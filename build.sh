@@ -12,7 +12,7 @@ then
         MODULOS+=($MODULO)
     done
 else
-    MODULOS=()
+    MODULOS=("sqrt")
 fi
 
 echo Analisando ${MODULOS[@]}

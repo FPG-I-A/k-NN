@@ -1,0 +1,27 @@
+[*]
+[*] GTKWave Analyzer v3.3.114 (w)1999-2023 BSI
+[*] Fri May  5 13:14:55 2023
+[*]
+[dumpfile] "/home/luis.amorim/git/FPG-I-A/resultados/sqrt/sqrt_tb.vcd"
+[dumpfile_mtime] "Fri May  5 12:33:03 2023"
+[dumpfile_size] 47256148
+[savefile] "/home/luis.amorim/git/FPG-I-A/gtkw/sqrt_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-33.299999 18980000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 209
+[signals_width] 230
+[sst_expanded] 1
+[sst_vpaned_height] 157
+@28
+sqrt_tb.i_clk
+sqrt_tb.i_init
+sqrt_tb.o_ocupado
+@40000025
+[fpshift_count] 14
+sqrt_tb.entrada_ponto_fixo[1:-14]
+[fpshift_count] 14
+sqrt_tb.resultado[1:-14]
+[pattern_trace] 1
+[pattern_trace] 0

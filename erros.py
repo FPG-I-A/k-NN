@@ -53,9 +53,16 @@ def processa_linha(linha):
     return fixo_para_float(str_x), fixo_para_float(str_sqrt_x)
 
 
+def sqrt(x, *args):
+    return math.sqrt(x)
+
+
 if __name__ == '__main__':
     modulo = parse_args()
     funcao = None
+    match modulo:
+        case 'sqrt':
+            funcao = sqrt
 
     erros = []
     with open(Path('resultados', modulo, modulo + '.csv')) as arquivo:
