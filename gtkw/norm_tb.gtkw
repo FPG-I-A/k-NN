@@ -1,0 +1,24 @@
+[*]
+[*] GTKWave Analyzer v3.3.114 (w)1999-2023 BSI
+[*] Fri May  5 13:06:29 2023
+[*]
+[dumpfile] "/home/luis.amorim/git/FPG-I-A/resultados/norm/norm_tb.vcd"
+[dumpfile_mtime] "Fri May  5 13:04:33 2023"
+[dumpfile_size] 4773635
+[savefile] "/home/luis.amorim/git/FPG-I-A/gtkw/norm_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-21.299999 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] norm_tb.
+[sst_width] 209
+[signals_width] 230
+[sst_expanded] 1
+[sst_vpaned_height] 157
+@40000024
+[fpshift_count] 14
+norm_tb.entrada_ponto_fixo[1:-14]
+[fpshift_count] 14
+norm_tb.resultado[1:-14]
+[pattern_trace] 1
+[pattern_trace] 0

@@ -57,12 +57,18 @@ def sqrt(x, *args):
     return math.sqrt(x)
 
 
+def norm(x):
+    return x / 2
+
+
 if __name__ == '__main__':
     modulo = parse_args()
     funcao = None
     match modulo:
         case 'sqrt':
             funcao = sqrt
+        case 'norm':
+            funcao = norm
 
     erros = []
     with open(Path('resultados', modulo, modulo + '.csv')) as arquivo:
