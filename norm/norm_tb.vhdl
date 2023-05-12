@@ -6,23 +6,17 @@ use std.textio.all;
 use std.env.finish;
 
 library work;
-use work.pacote_knn.all;
+use work.pacote_aux.all;
 
 
 entity norm_tb is
 end norm_tb;
 
 architecture sim of norm_tb is
-    -- parâmetros da UUT
-    constant parte_inteira     : integer := 1;
-    constant parte_fracionaria : integer := -14;
-    
-    
-    
-    signal entrada_ponto_fixo : sfixed(parte_inteira downto parte_fracionaria) := s_fixo_min;
+    signal entrada_ponto_fixo : s_fixo := s_fixo_min;
 
     -- portas do componente
-    signal resultado          : sfixed(parte_inteira downto parte_fracionaria);
+    signal resultado          : s_fixo;
 
     -- Escrita no arquivo de saída
     file fptr: text;
@@ -31,8 +25,6 @@ begin
 
     UUT: entity work.norm
         generic map(
-            gen_parte_inteira=>parte_inteira,
-            gen_parte_fracionaria=>parte_fracionaria,
             gen_max_x=>s_fixo_max,
             gen_min_x=>s_fixo_min
         )

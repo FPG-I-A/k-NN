@@ -27,12 +27,12 @@ echo -e "${VERDE}Módulos a serem analisados: ${junto::-2}"
 
 # Cria diretório de build e copia arquivos de fonte para lá
 mkdir -p build
-echo -e "\n${VERDE}Copiando arquivos para pasta de build:"
+echo -e "${VERDE}Copiando arquivos para pasta de build:"
 echo -e "${ROSA}  Biblioteca:"
-echo -e "${CIANO}    cp aux.vhdl build/aux.vhdl"
-cp aux.vhdl build/aux.vhdl
+echo -e "${CIANO}    cp pacote_aux.vhdl build/pacote_aux.vhdl"
+cp pacote_aux.vhdl build/pacote_aux.vhdl
 for MODULO in ${MODULOS[@]}; do
-    echo -e "\n${ROSA}  Módulo ${MODULO}:"
+    echo -e "${ROSA}  Módulo ${MODULO}:"
     for ARQUIVO in ${MODULO}.vhdl ${MODULO}_tb.vhdl; do
         echo -e "${CIANO}    cp ${MODULO}/${ARQUIVO} build/${ARQUIVO}"
         cp ${MODULO}/${ARQUIVO} build/${ARQUIVO}
@@ -40,13 +40,13 @@ for MODULO in ${MODULOS[@]}; do
 done
 
 cd build
-echo -e "\n${VERDE}Analisando a biblioteca:"
-echo -e "  ${ROXO}ghdl -a ${GHDLFLAGS} aux.vhdl"
-ghdl -a ${GHDLFLAGS} aux.vhdl
+echo -e "${VERDE}Analisando a biblioteca:"
+echo -e "  ${ROXO}ghdl -a ${GHDLFLAGS} pacote_aux.vhdl"
+ghdl -a ${GHDLFLAGS} pacote_aux.vhdl
 
 for MODULO in ${MODULOS[@]}; do
     
-    echo -e "\n${VERDE}Analisando módulo ${MODULO}:"
+    echo -e "${VERDE}Analisando módulo ${MODULO}:"
     # Compila VHDL para ARQUIVOs de objeto
     for ARQUIVO in ${MODULO}.vhdl ${MODULO}_tb.vhdl; do
         echo -e "${ROXO}  ghdl -a ${GHDLFLAGS} ${ARQUIVO}"
@@ -70,6 +70,8 @@ for MODULO in ${MODULOS[@]}; do
 
 done
 
-echo -e "\n${VERDE}Removendo pasta de build:"
+echo -e "${VERDE}Removendo pasta de build:"
 echo -e "${CIANO}  rm -rf build"
 rm -rf build
+
+echo -e "${VERDE}Análise de módulos finalizada, arquivos gerados estão na pasta resultados."

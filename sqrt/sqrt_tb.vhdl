@@ -6,7 +6,7 @@ use std.textio.all;
 use std.env.finish;
 
 library work;
-use work.pacote_knn.all;
+use work.pacote_aux.all;
 
 
 entity sqrt_tb is
@@ -22,12 +22,12 @@ architecture sim of sqrt_tb is
     -- | max_iter = 2^(parte_inteira - parte_fracionaria) * (iteracoes + 3)               |
     -- | $$                                                                               |
     -- |----------------------------------------------------------------------------------|
-    constant iteracoes         : integer := 7;
-    constant max_iter          : integer := 327680;
-    signal   entrada_ponto_fixo : sfixed(parte_inteira downto parte_fracionaria) := s_fixo_zero;
+    constant iteracoes          : integer := 7;
+    constant max_iter           : integer := 327680;
+    signal   entrada_ponto_fixo : s_fixo := s_fixo_zero;
 
     -- portas do componente
-    signal resultado          : sfixed(parte_inteira downto parte_fracionaria);
+    signal resultado          : s_fixo;
     signal i_clk              : bit := '0';
     signal i_init             : bit := '0';
     signal i_reset            : bit := '0';
@@ -43,8 +43,6 @@ begin
 
     UUT: entity work.sqrt
         generic map(
-            gen_parte_inteira=>parte_inteira,
-            gen_parte_fracionaria=>parte_fracionaria,
             gen_iteracoes=>iteracoes
         )
         port map(

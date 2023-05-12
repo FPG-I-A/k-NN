@@ -3,17 +3,18 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use ieee.fixed_pkg.all;
 
+library work;
+use work.pacote_aux.all;
+
 entity norm is
 generic (
-    gen_parte_inteira     : integer;
-    gen_parte_fracionaria : integer;
-    gen_max_x  : in  sfixed(gen_parte_inteira downto gen_parte_fracionaria);
-    gen_min_x  : in  sfixed(gen_parte_inteira downto gen_parte_fracionaria)
+    gen_max_x  : in  s_fixo;
+    gen_min_x  : in  s_fixo
 
 );
 port (
-    i_x      : in  sfixed(gen_parte_inteira downto gen_parte_fracionaria);
-    o_x_norm : out sfixed(gen_parte_inteira downto gen_parte_fracionaria)
+    i_x      : in  s_fixo;
+    o_x_norm : out s_fixo
 );
 end norm;
 
