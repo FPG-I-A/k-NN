@@ -14,15 +14,15 @@ port (
     i_clk    : in  bit;
     i_init   : in  bit;
     i_reset  : in  bit;
-    i_x      : in  ufixed(gen_parte_inteira downto gen_parte_fracionaria);
-    o_sqrt_x : out ufixed(gen_parte_inteira downto gen_parte_fracionaria);
+    i_x      : in  sfixed(gen_parte_inteira downto gen_parte_fracionaria);
+    o_sqrt_x : out sfixed(gen_parte_inteira downto gen_parte_fracionaria);
     o_ocupado: out bit
 );
 end sqrt;
 
 architecture metodo_heron of sqrt is 
-    signal s        : ufixed(gen_parte_inteira downto gen_parte_fracionaria);
-    signal xn       : ufixed(gen_parte_inteira downto gen_parte_fracionaria);
+    signal s        : sfixed(gen_parte_inteira downto gen_parte_fracionaria);
+    signal xn       : sfixed(gen_parte_inteira downto gen_parte_fracionaria);
     signal contador : integer := 0;
     signal iniciar  : bit := '0';
     
@@ -32,7 +32,7 @@ architecture metodo_heron of sqrt is
             if iniciar = '1' then
                 contador <= 0;
                 o_ocupado <= '1';
-                xn <= to_ufixed(0.5, xn);
+                xn <= to_sfixed(0.5, xn);
             end if; 
 
             if o_ocupado = '1' then

@@ -50,15 +50,12 @@ def fixo_para_float(fixo):
 
 def processa_linha(linha):
     str_x, str_sqrt_x = linha.split(';')
+    str_x = str_x[1:] # remove bit de sinal
     return fixo_para_float(str_x), fixo_para_float(str_sqrt_x)
 
 
 def sqrt(x, *args):
     return math.sqrt(x)
-
-
-def norm(x):
-    return x / 2
 
 
 if __name__ == '__main__':
@@ -68,7 +65,9 @@ if __name__ == '__main__':
         case 'sqrt':
             funcao = sqrt
         case 'norm':
-            funcao = norm
+            print('Este módulo não possuí erros de aproximação, apenas erros de representação.')
+            print('Desta fórma, nenhuma verificação é necessária.')
+            exit()
 
     erros = []
     with open(Path('resultados', modulo, modulo + '.csv')) as arquivo:
@@ -80,8 +79,8 @@ if __name__ == '__main__':
         calculado = list(calculado)
         erros = list(map(lambda a, b: a - b, calculado, reais))
 
-    print(f'Erro médio: {mean(erros):.14f}')
+    print(f'Erro médio: {mean(erros):.2}')
     print(
-        f'Erro médio normalizado: {100 * mean(map(lambda a, b: a / b if b != 0 else a, erros, x)):.12%}'
+        f'Erro médio normalizado: {100 * mean(map(lambda a, b: a / b if b != 0 else a, erros, x)):.2%}'
     )
-    print(f'Desvio padrão do erro: {stdev(erros):.14f}')
+    print(f'Desvio padrão do erro: {stdev(erros):.2f}')

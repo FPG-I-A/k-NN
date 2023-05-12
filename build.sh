@@ -2,6 +2,13 @@
 
 set -e
 GHDLFLAGS=--std=08
+CIANO='\033[38;2;139;233;253m'
+VERDE='\033[38;2;80;250;123m'
+LARANJA='\033[38;2;255;184;108m'
+ROSA='\033[38;2;255;121;198m'
+ROXO='\033[38;2;189;147;249m'
+VERMELHO='\033[38;2;255;85;85m'
+AMARELO='\033[38;2;241;250;140m'
 
 # Checa módulos a serem compilados
 ARGC=$#
@@ -12,43 +19,57 @@ then
         MODULOS+=($MODULO)
     done
 else
-    MODULOS=("sqrt")
+    MODULOS=("sqrt" "norm")
 fi
 
-echo Analisando ${MODULOS[@]}
+printf -v junto '%s, ' ${MODULOS[@]}
+echo -e "${VERDE}Módulos a serem analisados: ${junto::-2}"
 
 # Cria diretório de build e copia arquivos de fonte para lá
 mkdir -p build
+echo -e "\n${VERDE}Copiando arquivos para pasta de build:"
+echo -e "${ROSA}  Biblioteca:"
+echo -e "${CIANO}    cp aux.vhdl build/aux.vhdl"
+cp aux.vhdl build/aux.vhdl
 for MODULO in ${MODULOS[@]}; do
+    echo -e "\n${ROSA}  Módulo ${MODULO}:"
     for ARQUIVO in ${MODULO}.vhdl ${MODULO}_tb.vhdl; do
-        echo cp ${MODULO}/${ARQUIVO} build/${ARQUIVO}
+        echo -e "${CIANO}    cp ${MODULO}/${ARQUIVO} build/${ARQUIVO}"
         cp ${MODULO}/${ARQUIVO} build/${ARQUIVO}
     done
 done
 
 cd build
+echo -e "\n${VERDE}Analisando a biblioteca:"
+echo -e "  ${ROXO}ghdl -a ${GHDLFLAGS} aux.vhdl"
+ghdl -a ${GHDLFLAGS} aux.vhdl
 
 for MODULO in ${MODULOS[@]}; do
     
+    echo -e "\n${VERDE}Analisando módulo ${MODULO}:"
     # Compila VHDL para ARQUIVOs de objeto
     for ARQUIVO in ${MODULO}.vhdl ${MODULO}_tb.vhdl; do
-        echo ghdl -a ${GHDLFLAGS} ${ARQUIVO}
+        echo -e "${ROXO}  ghdl -a ${GHDLFLAGS} ${ARQUIVO}"
         ghdl -a ${GHDLFLAGS} ${ARQUIVO}
     done
 
     # Elabora bancada de testes
-    echo ghdl -e ${GHDLFLAGS} ${MODULO}_tb 
+    echo -e "${LARANJA}  ghdl -e ${GHDLFLAGS} ${MODULO}_tb"
     ghdl -e ${GHDLFLAGS} ${MODULO}_tb
 
     # Executa bancada de testes
-    echo ghdl -r ${GHDLFLAGS} ${MODULO}_tb --vcd=${MODULO}_tb.vcd
-    ghdl -r ${GHDLFLAGS} ${MODULO}_tb --vcd=${MODULO}_tb.vcd
+    echo -e "${VERMELHO}  ghdl -r ${GHDLFLAGS} ${MODULO}_tb --vcd=${MODULO}_tb.vcd"
+    ghdl -r ${GHDLFLAGS} ${MODULO}_tb --vcd=${MODULO}_tb.vcd > /dev/null
 
     mkdir -p ../resultados/${MODULO}
 
-    echo mv ${MODULO}.csv ../resultados/${MODULO}/${MODULO}.csv
+    echo -e "${CIANO}  mv ${MODULO}.csv ../resultados/${MODULO}/${MODULO}.csv"
     mv ${MODULO}.csv ../resultados/${MODULO}/${MODULO}.csv
-    echo mv ${MODULO}.vcd ../resultados/${MODULO}/${MODULO}.vcd
+    echo -e "  mv ${MODULO}.vcd ../resultados/${MODULO}/${MODULO}.vcd"
     mv ${MODULO}_tb.vcd ../resultados/${MODULO}/${MODULO}_tb.vcd
 
 done
+
+echo -e "\n${VERDE}Removendo pasta de build:"
+echo -e "${CIANO}  rm -rf build"
+rm -rf build

@@ -5,6 +5,9 @@ use ieee.fixed_pkg.all;
 use std.textio.all;
 use std.env.finish;
 
+library work;
+use work.pacote_knn.all;
+
 
 entity norm_tb is
 end norm_tb;
@@ -16,28 +19,10 @@ architecture sim of norm_tb is
     
     
     
-    -- _____________________________________________________________________________________________
-    -- |                                          ATENÇÃO                                          |
-    -- | Sempre que houver modificação em `parte_inteira`ou em `parte_fracionaria` os valores de   |
-    -- | `lsb`, `entrada_ponto_fixo`, `max_x`e `min_x` devem ser recalculados manualmente e        |
-    -- | modificados no código.                                                                    |
-    -- |                                                                                           |
-    -- | Considerando:                                                                             |
-    -- |     n_bits = (parte_inteira - parte_fracionaria + 1) : número de bits no nº de ponto fixo |
-    -- |                                                                                           |
-    -- | Todos devem ter uma quantidade de bits igual à n_bits                                     |
-    -- | `lsb` = 00...01                                                                           |
-    -- | `entrada_ponto_fixo` = 00...00                                                            |
-    -- | `max_x` = 10...00                                                                         | 
-    -- | `min_x` = 00...00
-    -- ---------------------------------------------------------------------------------------------
-    constant valor_max        : ufixed(parte_inteira downto parte_fracionaria) := "1111111111111111";
-    signal entrada_ponto_fixo : ufixed(parte_inteira downto parte_fracionaria) := "0000000000000000";
-    constant max_x            : ufixed(parte_inteira downto parte_fracionaria) := "1000000000000000";
-    constant min_x            : ufixed(parte_inteira downto parte_fracionaria) := "0000000000000000";
+    signal entrada_ponto_fixo : sfixed(parte_inteira downto parte_fracionaria) := s_fixo_min;
 
     -- portas do componente
-    signal resultado          : ufixed(parte_inteira downto parte_fracionaria);
+    signal resultado          : sfixed(parte_inteira downto parte_fracionaria);
 
     -- Escrita no arquivo de saída
     file fptr: text;
@@ -48,8 +33,8 @@ begin
         generic map(
             gen_parte_inteira=>parte_inteira,
             gen_parte_fracionaria=>parte_fracionaria,
-            gen_max_x=>max_x,
-            gen_min_x=>min_x
+            gen_max_x=>s_fixo_max,
+            gen_min_x=>s_fixo_min
         )
         port map(
             i_x=>entrada_ponto_fixo,
@@ -61,7 +46,7 @@ begin
         entrada_ponto_fixo <= resize(arg=>entrada_ponto_fixo + 0.0000610352,
                                      size_res=>entrada_ponto_fixo);
         wait for 1 ns;
-        if entrada_ponto_fixo = valor_max then
+        if entrada_ponto_fixo = s_fixo_max then
             finish;
         end if;
     end process clock;
@@ -71,7 +56,7 @@ begin
     variable fstatus       :file_open_status;
     variable file_line     :line;
     begin
-        if (entrada_ponto_fixo = 0) then
+        if (entrada_ponto_fixo = s_fixo_min) then
             file_open(fstatus, fptr, "norm.csv", write_mode);
             write(file_line, string'("x;norm(x)"), left, 9);
             writeline(fptr, file_line);

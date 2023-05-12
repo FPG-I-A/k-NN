@@ -1,7 +1,11 @@
-# Descrição
+# Raíz quadrada
+
+## Descrição
+
 Módulo para calculo de raiz quadrada em ponto fixo.
 
-# Algoritmo
+## Algoritmo
+
 O algoritmo utilizado para o cálculo é um algoritmo interativo chamado [método de heron](https://en.wikipedia.org/wiki/Methods_of_computing_square_roots#Heron's_method). Desta forma, uma estimativa inicial é feita e a cada iteração ela é atualizada para se aproximar do resultado correto. A atualização da estimativa é feita segundo a fórmula abaixo.
 
 $$
@@ -12,18 +16,15 @@ Sendo $y_n$ a estimativa na iteração $n$ e $x$ o valor do qual se quer calcula
 
 Como pretendemos utilizar números normalizados entre $0$ e $1$, utilizamos como estimativa inicial o valor $y_0=0,5$, ou seja, o meio do intervalo.
 
-# Mapeamento genérico
-<center>
+## Mapeamento genérico
 
 |        **Nome**       | **Tipo** |                          **Descrição**                          |
 |:---------------------:|:--------:|:---------------------------------------------------------------:|
 |   `gen_parte_inteira`   |  inteiro |    Quantidade de bits da parte inteira do número de ponto fixo  |
 | `gen_parte_fracionaria` |  inteiro | Quantidade de bits da parte fracionária do número de ponto fixo |
 |     `gen_iteracoes`     |  inteiro |                 número de iterações do algoritmo                |
-</center>
 
-# Mapeamento de portas
-<center>
+## Mapeamento de portas
 
 |  **Nome** | **Tipo** |                    **Descrição**                    |
 |:---------:|:--------:|:---------------------------------------------------:|
@@ -33,11 +34,10 @@ Como pretendemos utilizar números normalizados entre $0$ e $1$, utilizamos como
 |    `i_x`    |     ponto fixo     |                   Valor de entrada                  |
 |  `o_sqrt_x` |     ponto fixo     |                      Resultado                      |
 | `o_ocupado` |         bit        | Sinal que indica que o calculo está sendo realizado |
-</center>
 
-# Funcionamento da FSM
+## Funcionamento da FSM
+
 A máquina de estados finitos é controlada por três portas do módulo: `i_init`, `i_reset`e `o_ocupado`. A tabela abaixo mostra a operação realizada em cada caso.
-<center>
 
 | `i_init` | `i_reset` | `o_ocupado` |                 **Operação**                 |
 |:------------:|:-------------:|:---------------:|:--------------------------------------------:|
@@ -46,4 +46,3 @@ A máquina de estados finitos é controlada por três portas do módulo: `i_init
 |       x      |       0       |        1        | Operação, já iniciada, continua em andamento |
 |       1      |       0       |        0        |              Operação é iniciada             |
 |       1      |       1       |        x        |              Operação é iniciada             |
-</center>

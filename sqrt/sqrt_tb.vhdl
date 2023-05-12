@@ -5,38 +5,29 @@ use ieee.fixed_pkg.all;
 use std.textio.all;
 use std.env.finish;
 
+library work;
+use work.pacote_knn.all;
+
 
 entity sqrt_tb is
 end sqrt_tb;
 
 architecture sim of sqrt_tb is
     
-
-    -- parâmetros genêricos da UUT
-    constant parte_inteira     : integer := 1;
-    constant parte_fracionaria : integer := -14;
+    -- |----------------------------------------------------------------------------------|
+    -- |                                          ATENÇÃO                                 |
+    -- | Sempre que `parte_inteira`, `parte_fracionaria` ou `iteracoes` mudar, o valor de |
+    -- | `max_iter` deve ser recalculado utilizando a fórmula:                            |
+    -- | $$                                                                               |
+    -- | max_iter = 2^(parte_inteira - parte_fracionaria) * (iteracoes + 3)               |
+    -- | $$                                                                               |
+    -- |----------------------------------------------------------------------------------|
     constant iteracoes         : integer := 7;
-    
-    -- _____________________________________________________________________________________________
-    -- |                                          ATENÇÃO                                          |
-    -- | Sempre que houver modificação em `parte_inteira`ou em `parte_fracionaria` os valores de   |
-    -- | `lsb`, `entrada_ponto_fixo` e `max_iter` devem ser recalculados manualmente e modificados |
-    -- | no código.                                                                                |
-    -- |                                                                                           |
-    -- | Considerando:                                                                             |
-    -- |     n_bits = (parte_inteira - parte_fracionaria + 1) : número de bits no nº de ponto fixo |
-    -- |     n_ciclos = iteracoes + 3 : número de ciclos de clock para o cálculo da raiz quadrada  |
-    -- |                                                                                           |
-    -- | `lsb` e `entrada_ponto_fixo` devem ter uma quantidade de bits igual à n_bits              |
-    -- |                                                                                           |
-    -- | max_iter = 2^n_bits * n_ciclos                                                            |
-    -- ---------------------------------------------------------------------------------------------
-    constant max_iter          : integer := 655360;
-    constant lsb              : ufixed(parte_inteira downto parte_fracionaria) := "0000000000000001";
-    signal entrada_ponto_fixo : ufixed(parte_inteira downto parte_fracionaria) := "0000000000000000";
+    constant max_iter          : integer := 327680;
+    signal   entrada_ponto_fixo : sfixed(parte_inteira downto parte_fracionaria) := s_fixo_zero;
 
     -- portas do componente
-    signal resultado          : ufixed(parte_inteira downto parte_fracionaria);
+    signal resultado          : sfixed(parte_inteira downto parte_fracionaria);
     signal i_clk              : bit := '0';
     signal i_init             : bit := '0';
     signal i_reset            : bit := '0';
@@ -97,7 +88,7 @@ begin
     begin
         if falling_edge(o_ocupado) then
             -- Escreve o cabeçalho
-            if (entrada_ponto_fixo = 0) then
+            if (entrada_ponto_fixo = s_fixo_zero) then
                 file_open(fstatus, fptr, "sqrt.csv", write_mode);
                 write(file_line, string'("x;sqrt(x)"), left, 9);
                 writeline(fptr, file_line);
@@ -109,7 +100,7 @@ begin
             writeline(fptr, file_line);
             
             -- Atualiza x
-            entrada_ponto_fixo <= resize(arg=>entrada_ponto_fixo+lsb, size_res=>entrada_ponto_fixo);
+            entrada_ponto_fixo <= resize(arg=>entrada_ponto_fixo+s_fixo_lsb, size_res=>entrada_ponto_fixo);
         end if;
     end process incremento;
     
