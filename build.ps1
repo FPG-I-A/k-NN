@@ -8,8 +8,10 @@ if ($args.Count -gt 0) {
         $MODULOS += $args[$i]
     }
 } else {
-    $MODULOS = @("sqrt", "norm")
+    $MODULOS = @("sqrt", "norm", "argmin")
 }
+
+if ($MODULOS -contains "argmin") {$MODULOS = , "insere" + $MODULOS}
 
 $junto = ($MODULOS -join ", ")
 Write-Host "Módulos a serem analisados: $junto" -ForeGroundColor Green
@@ -48,19 +50,19 @@ foreach ($MODULO in $MODULOS) {
 
     # Executa bancada de testes
     Write-Host "    ghdl -r --std=08 "${MODULO}_tb" --wave=${MODULO}_tb.ghw" -ForeGroundColor Red
-    ghdl -r --std=08 "${MODULO}_tb" --wave=${MODULO}_tb.ghw" > $null
+    ghdl -r --std=08 "${MODULO}_tb" --wave="${MODULO}_tb.ghw" > $null
 
     if (-Not (Test-Path -Path ../resultados/$MODULO)) { New-Item -ItemType Directory -Path "../resultados/$MODULO" | Out-Null }
 
     if ((Test-Path -Path ../resultados/$MODULO/$MODULO.csv)) {Remove-Item "../resultados/$MODULO/$MODULO.csv"}
-    if (Test-Path Path $MODULO.csv) {
-        Write-Host "    Move-Item $MODULO.csv ../resultados/$MODULO/$MODULO.csv" -ForeGroundColor Blue
-        Move-Item "$MODULO.csv" "../resultados/$MODULO/$MODULO.csv"
+    if (Test-Path -Path "${MODULO}.csv") {
+        Write-Host "    Move-Item "${MODULO}".csv ../resultados/${MODULO}/"${MODULO}".csv" -ForeGroundColor Blue
+        Move-Item "$MODULO.csv" "../resultados/${MODULO}/${MODULO}.csv"
     }
     
     if ((Test-Path -Path ../resultados/$MODULO/${MODULO}_tb.ghw)) {Remove-Item "../resultados/$MODULO/${MODULO}_tb.ghw"}
-    if (Test-Path Path ${MODULO}_tb.csv) {
-        Write-Host "    Move-Item ${MODULO}_tb.ghw ../resultados/$MODULO/${MODULO}_tb.ghw" -ForeGroundColor Blue
+    if (Test-Path -Path "${MODULO}_tb.ghw") {
+        Write-Host "    Move-Item "${MODULO}_tb.ghw" ../resultados/$MODULO/${MODULO}_tb.ghw" -ForeGroundColor Blue
         Move-Item "${MODULO}_tb.ghw" "../resultados/$MODULO/${MODULO}_tb.ghw"
     }
 }

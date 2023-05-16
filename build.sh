@@ -19,8 +19,17 @@ then
         MODULOS+=($MODULO)
     done
 else
-    MODULOS=("sqrt" "norm")
+    MODULOS=("sqrt" "norm" "argmin")
 fi
+
+# Checa se módulos auxiliares são necessários
+for i in "${MODULOS[@]}"
+do
+    if [ "$i" == "argmin" ] ; then
+        MODULOS=("insere" "${MODULOS[@]}")
+        echo -e "${LARANJA}Módulo insere adicionado pois argmin depende dele."
+    fi
+done
 
 printf -v junto '%s, ' ${MODULOS[@]}
 echo -e "${VERDE}Módulos a serem analisados: ${junto::-2}"
@@ -59,7 +68,7 @@ for MODULO in ${MODULOS[@]}; do
 
     # Executa bancada de testes
     echo -e "${VERMELHO}  ghdl -r ${GHDLFLAGS} ${MODULO}_tb --wave=${MODULO}_tb.ghw"
-    ghdl -r ${GHDLFLAGS} ${MODULO}_tb --wave=${MODULO}_tb.ghw > /dev/null
+    ghdl -r ${GHDLFLAGS} ${MODULO}_tb --wave=${MODULO}_tb.ghw
 
     mkdir -p ../resultados/${MODULO}
 
@@ -68,7 +77,7 @@ for MODULO in ${MODULOS[@]}; do
         mv ${MODULO}.csv ../resultados/${MODULO}/${MODULO}.csv
     fi;
     if test -f "${MODULO}_tb.ghw"; then
-        echo -e "  mv ${MODULO}.ghw ../resultados/${MODULO}/${MODULO}_tb.ghw"
+        echo -e "${CIANO}  mv ${MODULO}.ghw ../resultados/${MODULO}/${MODULO}_tb.ghw"
         mv ${MODULO}_tb.ghw ../resultados/${MODULO}/${MODULO}_tb.ghw
     fi;
 
