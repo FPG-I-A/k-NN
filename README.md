@@ -33,3 +33,5 @@ Cada módulo possuí uma sessão de mapeamento genérico e uma de mapeamento de 
 
 - [`sqrt`](sqrt/README.md)
 - [`norm`](norm/README.md)
+- [`insere`](insere/README.md)
+- [`argmim`](argmin/README.md)
