@@ -14,14 +14,14 @@ $$
 
 ## Mapeamento genérico
 
-|        **Nome**       | **Tipo** |                          **Descrição**                          |
-|:---------------------:|:--------:|:---------------------------------------------------------------:|
-|   `gen_parte_inteira`   |  inteiro |    Quantidade de bits da parte inteira do número de ponto fixo  |
-| `gen_parte_fracionaria` |  inteiro | Quantidade de bits da parte fracionária do número de ponto fixo |
+|  **Nome**   | **Tipo** |                 **Descrição**                  |
+|:-----------:|:--------:|:----------------------------------------------:|
+| `gen_max_x` |  inteiro | Limite superior do intervalo a ser normalizado |
+| `gen_min_x` |  inteiro | Limite inferior do intervalo a ser normalizado |
 
 ## Mapeamento de portas
 
-|  **Nome** | **Tipo** |                    **Descrição**                    |
-|:---------:|:--------:|:---------------------------------------------------:|
-|    `i_x`    |     ponto fixo     |                   Valor de entrada                  |
-|  `o_x_norm` |     ponto fixo     |                      Resultado                      |
+|   **Nome**  |      **Tipo**      |              **Descrição**              |
+|:-----------:|:------------------:|:---------------------------------------:|
+|    `i_x`    |     ponto fixo     |             Valor de entrada            |
+|  `o_x_norm` |     ponto fixo     |                Resultado                |

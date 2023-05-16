@@ -20,15 +20,13 @@ Como pretendemos utilizar números normalizados entre $0$ e $1$, utilizamos como
 
 |        **Nome**       | **Tipo** |                          **Descrição**                          |
 |:---------------------:|:--------:|:---------------------------------------------------------------:|
-|   `gen_parte_inteira`   |  inteiro |    Quantidade de bits da parte inteira do número de ponto fixo  |
-| `gen_parte_fracionaria` |  inteiro | Quantidade de bits da parte fracionária do número de ponto fixo |
-|     `gen_iteracoes`     |  inteiro |                 número de iterações do algoritmo                |
+|    `gen_iteracoes`    |  inteiro |                 número de iterações do algoritmo                |
 
 ## Mapeamento de portas
 
-|  **Nome** | **Tipo** |                    **Descrição**                    |
-|:---------:|:--------:|:---------------------------------------------------:|
-|   `i_clk`   |         bit        |           `Clock` para execução do algoritmo          |
+|   **Nome**  |      **Tipo**      |                    **Descrição**                    |
+|:-----------:|:------------------:|:---------------------------------------------------:|
+|   `i_clk`   |         bit        |           `Clock` para execução do algoritmo        |
 |   `i_init`  |         bit        |            Sinal para iniciar o algoritmo           |
 |  `i_reset`  |         bit        |            Sinal para resetar o algoritmo           |
 |    `i_x`    |     ponto fixo     |                   Valor de entrada                  |
@@ -39,7 +37,7 @@ Como pretendemos utilizar números normalizados entre $0$ e $1$, utilizamos como
 
 A máquina de estados finitos é controlada por três portas do módulo: `i_init`, `i_reset`e `o_ocupado`. A tabela abaixo mostra a operação realizada em cada caso.
 
-| `i_init` | `i_reset` | `o_ocupado` |                 **Operação**                 |
+|   `i_init`   |   `i_reset`   |   `o_ocupado`   |                 **Operação**                 |
 |:------------:|:-------------:|:---------------:|:--------------------------------------------:|
 |       0      |       x       |        0        |                 Nada acontece                |
 |       0      |       1       |        1        |       Operação iniciada é interrompida       |

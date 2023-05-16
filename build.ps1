@@ -47,17 +47,22 @@ foreach ($MODULO in $MODULOS) {
     ghdl -e --std=08 "${MODULO}_tb"
 
     # Executa bancada de testes
-    Write-Host "    ghdl -r --std=08 "${MODULO}_tb" --vcd=${MODULO}_tb.vcd" -ForeGroundColor Red
-    ghdl -r --std=08 "${MODULO}_tb" --vcd="${MODULO}_tb.vcd" > $null
+    Write-Host "    ghdl -r --std=08 "${MODULO}_tb" --wave=${MODULO}_tb.ghw" -ForeGroundColor Red
+    ghdl -r --std=08 "${MODULO}_tb" --wave=${MODULO}_tb.ghw" > $null
 
     if (-Not (Test-Path -Path ../resultados/$MODULO)) { New-Item -ItemType Directory -Path "../resultados/$MODULO" | Out-Null }
 
     if ((Test-Path -Path ../resultados/$MODULO/$MODULO.csv)) {Remove-Item "../resultados/$MODULO/$MODULO.csv"}
-    Write-Host "    Move-Item $MODULO.csv ../resultados/$MODULO/$MODULO.csv" -ForeGroundColor Blue
-    Move-Item "$MODULO.csv" "../resultados/$MODULO/$MODULO.csv"
-    if ((Test-Path -Path ../resultados/$MODULO/${MODULO}_tb.vcd)) {Remove-Item "../resultados/$MODULO/${MODULO}_tb.vcd"}
-    Write-Host "    Move-Item ${MODULO}_tb.vcd ../resultados/$MODULO/${MODULO}_tb.vcd" -ForeGroundColor Blue
-    Move-Item "${MODULO}_tb.vcd" "../resultados/$MODULO/${MODULO}_tb.vcd"
+    if (Test-Path Path $MODULO.csv) {
+        Write-Host "    Move-Item $MODULO.csv ../resultados/$MODULO/$MODULO.csv" -ForeGroundColor Blue
+        Move-Item "$MODULO.csv" "../resultados/$MODULO/$MODULO.csv"
+    }
+    
+    if ((Test-Path -Path ../resultados/$MODULO/${MODULO}_tb.ghw)) {Remove-Item "../resultados/$MODULO/${MODULO}_tb.ghw"}
+    if (Test-Path Path ${MODULO}_tb.csv) {
+        Write-Host "    Move-Item ${MODULO}_tb.ghw ../resultados/$MODULO/${MODULO}_tb.ghw" -ForeGroundColor Blue
+        Move-Item "${MODULO}_tb.ghw" "../resultados/$MODULO/${MODULO}_tb.ghw"
+    }
 }
 
 Write-Host "Removendo pasta de build:" -ForeGroundColor Green

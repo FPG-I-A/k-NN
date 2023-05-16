@@ -58,15 +58,19 @@ for MODULO in ${MODULOS[@]}; do
     ghdl -e ${GHDLFLAGS} ${MODULO}_tb
 
     # Executa bancada de testes
-    echo -e "${VERMELHO}  ghdl -r ${GHDLFLAGS} ${MODULO}_tb --vcd=${MODULO}_tb.vcd"
-    ghdl -r ${GHDLFLAGS} ${MODULO}_tb --vcd=${MODULO}_tb.vcd > /dev/null
+    echo -e "${VERMELHO}  ghdl -r ${GHDLFLAGS} ${MODULO}_tb --wave=${MODULO}_tb.ghw"
+    ghdl -r ${GHDLFLAGS} ${MODULO}_tb --wave=${MODULO}_tb.ghw > /dev/null
 
     mkdir -p ../resultados/${MODULO}
 
-    echo -e "${CIANO}  mv ${MODULO}.csv ../resultados/${MODULO}/${MODULO}.csv"
-    mv ${MODULO}.csv ../resultados/${MODULO}/${MODULO}.csv
-    echo -e "  mv ${MODULO}.vcd ../resultados/${MODULO}/${MODULO}.vcd"
-    mv ${MODULO}_tb.vcd ../resultados/${MODULO}/${MODULO}_tb.vcd
+    if test -f "${MODULO}.csv"; then
+        echo -e "${CIANO}  mv ${MODULO}.csv ../resultados/${MODULO}/${MODULO}.csv"
+        mv ${MODULO}.csv ../resultados/${MODULO}/${MODULO}.csv
+    fi;
+    if test -f "${MODULO}_tb.ghw"; then
+        echo -e "  mv ${MODULO}.ghw ../resultados/${MODULO}/${MODULO}_tb.ghw"
+        mv ${MODULO}_tb.ghw ../resultados/${MODULO}/${MODULO}_tb.ghw
+    fi;
 
 done
 

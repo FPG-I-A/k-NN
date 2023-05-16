@@ -1,0 +1,36 @@
+[*]
+[*] GTKWave Analyzer v3.3.114 (w)1999-2023 BSI
+[*] Mon May 15 15:10:39 2023
+[*]
+[dumpfile] "/home/luis.amorim/git/k-nn/resultados/insere/insere_tb.ghw"
+[dumpfile_mtime] "Mon May 15 15:10:32 2023"
+[dumpfile_size] 2523
+[savefile] "/home/luis.amorim/git/k-nn/gtkw/insere.gtkw"
+[timestart] 0
+[size] 1920 988
+[pos] -1 -1
+*-31.654808 1230000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.insere_tb.
+[treeopen] top.insere_tb.uut.
+[sst_width] 209
+[signals_width] 142
+[sst_expanded] 1
+[sst_vpaned_height] 292
+@28
+top.insere_tb.i_clk
+top.insere_tb.o_ocupado
+@420
+top.insere_tb.uut.indice
+top.insere_tb.uut.o_resultado[0]
+top.insere_tb.uut.o_resultado[1]
+top.insere_tb.uut.o_resultado[2]
+top.insere_tb.uut.o_resultado[3]
+top.insere_tb.uut.o_resultado[4]
+top.insere_tb.uut.o_resultado[5]
+top.insere_tb.uut.o_resultado[6]
+top.insere_tb.uut.o_resultado[7]
+top.insere_tb.uut.o_resultado[8]
+top.insere_tb.uut.o_resultado[9]
+[pattern_trace] 1
+[pattern_trace] 0
