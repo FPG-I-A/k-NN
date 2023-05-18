@@ -31,7 +31,7 @@ Vale notar que, além disso, não há unidades de ponto flutuante, então, ao me
 
 Cada módulo possuí uma sessão de mapeamento genérico e uma de mapeamento de portas, além de uma descrição de seu funcionamento.
 
-- [`sqrt`](sqrt/README.md)
-- [`norm`](norm/README.md)
-- [`insere`](insere/README.md)
-- [`argmim`](argmin/README.md)
+- [`sqrt`](modulos/sqrt/README.md)
+- [`norm`](modulos/norm/README.md)
+- [`insere`](modulos/insere/README.md)
+- [`argmim`](modulos/argmin/README.md)

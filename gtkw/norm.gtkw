@@ -1,0 +1,26 @@
+[*]
+[*] GTKWave Analyzer v3.3.114 (w)1999-2023 BSI
+[*] Thu May 18 12:17:23 2023
+[*]
+[dumpfile] "/home/luis/git/k-NN/resultados/norm/norm_tb.ghw"
+[dumpfile_mtime] "Thu May 18 12:15:44 2023"
+[dumpfile_size] 590430
+[savefile] "/home/luis/git/k-NN/gtkw/norm.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] 734 568
+*-22.799999 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.norm_tb.
+[treeopen] top.norm_tb.uut.
+[sst_width] 209
+[signals_width] 230
+[sst_expanded] 1
+[sst_vpaned_height] 157
+@40000421
+[fpshift_count] 14
+#{top.norm_tb.entrada_ponto_fixo[1:-14]} top.norm_tb.entrada_ponto_fixo[1] top.norm_tb.entrada_ponto_fixo[0] top.norm_tb.entrada_ponto_fixo[-1] top.norm_tb.entrada_ponto_fixo[-2] top.norm_tb.entrada_ponto_fixo[-3] top.norm_tb.entrada_ponto_fixo[-4] top.norm_tb.entrada_ponto_fixo[-5] top.norm_tb.entrada_ponto_fixo[-6] top.norm_tb.entrada_ponto_fixo[-7] top.norm_tb.entrada_ponto_fixo[-8] top.norm_tb.entrada_ponto_fixo[-9] top.norm_tb.entrada_ponto_fixo[-10] top.norm_tb.entrada_ponto_fixo[-11] top.norm_tb.entrada_ponto_fixo[-12] top.norm_tb.entrada_ponto_fixo[-13] top.norm_tb.entrada_ponto_fixo[-14]
+[fpshift_count] 14
+#{top.norm_tb.resultado[1:-14]} top.norm_tb.resultado[1] top.norm_tb.resultado[0] top.norm_tb.resultado[-1] top.norm_tb.resultado[-2] top.norm_tb.resultado[-3] top.norm_tb.resultado[-4] top.norm_tb.resultado[-5] top.norm_tb.resultado[-6] top.norm_tb.resultado[-7] top.norm_tb.resultado[-8] top.norm_tb.resultado[-9] top.norm_tb.resultado[-10] top.norm_tb.resultado[-11] top.norm_tb.resultado[-12] top.norm_tb.resultado[-13] top.norm_tb.resultado[-14]
+[pattern_trace] 1
+[pattern_trace] 0

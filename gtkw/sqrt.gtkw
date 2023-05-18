@@ -1,0 +1,31 @@
+[*]
+[*] GTKWave Analyzer v3.3.114 (w)1999-2023 BSI
+[*] Thu May 18 12:18:57 2023
+[*]
+[dumpfile] "/home/luis/git/k-NN/resultados/sqrt/sqrt_tb.ghw"
+[dumpfile_mtime] "Thu May 18 12:15:59 2023"
+[dumpfile_size] 7205075
+[savefile] "/home/luis/git/k-NN/gtkw/sqrt.gtkw"
+[timestart] 0
+[size] 2560 988
+[pos] -781 -195
+*-33.299999 65542810000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.sqrt_tb.
+[treeopen] top.sqrt_tb.uut.
+[sst_width] 209
+[signals_width] 230
+[sst_expanded] 1
+[sst_vpaned_height] 292
+@28
+top.sqrt_tb.uut.i_clk
+top.sqrt_tb.uut.i_init
+top.sqrt_tb.uut.o_ocupado
+@40000421
+[fpshift_count] 14
+#{top.sqrt_tb.entrada_ponto_fixo[1:-14]} top.sqrt_tb.entrada_ponto_fixo[1] top.sqrt_tb.entrada_ponto_fixo[0] top.sqrt_tb.entrada_ponto_fixo[-1] top.sqrt_tb.entrada_ponto_fixo[-2] top.sqrt_tb.entrada_ponto_fixo[-3] top.sqrt_tb.entrada_ponto_fixo[-4] top.sqrt_tb.entrada_ponto_fixo[-5] top.sqrt_tb.entrada_ponto_fixo[-6] top.sqrt_tb.entrada_ponto_fixo[-7] top.sqrt_tb.entrada_ponto_fixo[-8] top.sqrt_tb.entrada_ponto_fixo[-9] top.sqrt_tb.entrada_ponto_fixo[-10] top.sqrt_tb.entrada_ponto_fixo[-11] top.sqrt_tb.entrada_ponto_fixo[-12] top.sqrt_tb.entrada_ponto_fixo[-13] top.sqrt_tb.entrada_ponto_fixo[-14]
+@40000420
+[fpshift_count] 14
+#{top.sqrt_tb.resultado[1:-14]} top.sqrt_tb.resultado[1] top.sqrt_tb.resultado[0] top.sqrt_tb.resultado[-1] top.sqrt_tb.resultado[-2] top.sqrt_tb.resultado[-3] top.sqrt_tb.resultado[-4] top.sqrt_tb.resultado[-5] top.sqrt_tb.resultado[-6] top.sqrt_tb.resultado[-7] top.sqrt_tb.resultado[-8] top.sqrt_tb.resultado[-9] top.sqrt_tb.resultado[-10] top.sqrt_tb.resultado[-11] top.sqrt_tb.resultado[-12] top.sqrt_tb.resultado[-13] top.sqrt_tb.resultado[-14]
+[pattern_trace] 1
+[pattern_trace] 0
