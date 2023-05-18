@@ -69,6 +69,12 @@ def recebe_argumentos():
         action='store_true',
         help='Limpa diretório de build após terminar.',
     )
+    parser.add_argument(
+        '-v',
+        '--verboso',
+        action='store_true',
+        help='Resultados mais verbosos.',
+    )
     args = parser.parse_args()
     if args.modulo is not None and args.todos:
         Mensagens.erro(
@@ -82,27 +88,44 @@ def recebe_argumentos():
     return parser, args
 
 
+def ajusta_dependencia(modulos, dependente, *dependencias):
+    for dependencia in dependencias:
+        try:
+            modulos.append(modulos.pop(modulos.index(dependencia))) # coloca o item ao final da lista
+        except ValueError:
+            modulos.append(dependencia)
+    modulos.append(modulos.pop(modulos.index(dependente))) # coloca o item ao final da lista
+    return modulos
+
 def seleciona_modulos(args, parser):
     if args.todos:
-        return [
+        modulos =  [
             caminho
             for caminho in Path('modulos').glob('*')
             if caminho.is_dir()
         ]
     else:
         modulos = args.modulo
-        if 'argmin' in args.modulo:
-            modulos.insert(0, 'insere')
         modulos = [Path('modulos', modulo) for modulo in modulos]
         for modulo in modulos:
             if not modulo.is_dir():
                 Mensagens.erro(f'Módulo {modulo.stem} não existe.', parser)
 
-        return modulos
+    # Garante que os módulos que dependem de outros sejam analisados
+    # após suas dependências
+    dict_deps = {
+        Path('modulos', 'argmin'): [Path('modulos', 'insere')],
+    }
+    for dependente, dependencias in dict_deps.items():
+        modulos = ajusta_dependencia(modulos, dependente, *dependencias)
+    return modulos
 
 
-def chama_comando(comando, parser):
-    codigo = call(comando.split(' '), stdout=DEVNULL, stderr=DEVNULL)
+def chama_comando(comando, parser, verboso):
+    if verboso:
+        codigo = call(comando.split(' '))
+    else:
+        codigo = call(comando.split(' '), stdout=DEVNULL, stderr=DEVNULL)
     if codigo != 0:
         Mensagens.erro(f'\tComando retornou o código {codigo}', parser)
 
@@ -121,15 +144,15 @@ def move_arquivos(modulos):
         shutil.copy(Path('modulos', modulo, nome_tb), dir_build / nome_tb)
 
 
-def compila_pacote(argumentos, parser):
+def compila_pacote(argumentos, parser, verboso):
     Mensagens.info('Analisando a biblioteca:')
     comando = f'ghdl -a {argumentos} pacote_aux.vhdl'
 
     Mensagens.comando(f'\t{comando}')
-    chama_comando(comando, parser)
+    chama_comando(comando, parser, verboso)
 
 
-def compila_modulo(modulo, argumentos, parser):
+def compila_modulo(modulo, argumentos, parser, verboso):
     Mensagens.info(f'\nAnalisando módulo {modulo}:')
 
     arquivos = [modulo + '.vhdl', modulo + '_tb.vhdl']
@@ -138,19 +161,19 @@ def compila_modulo(modulo, argumentos, parser):
     for arquivo in arquivos:
         comando = f'ghdl -a {argumentos} {arquivo}'
         Mensagens.comando(f'\t{comando}')
-        chama_comando(comando, parser)
+        chama_comando(comando, parser, verboso)
 
     arquivo = arquivos[1].split('.')[0]
 
     # Elabora tb
     comando = f'ghdl -e {argumentos} {arquivo}'
     Mensagens.comando(f'\t{comando}', 2)
-    chama_comando(comando, parser)
+    chama_comando(comando, parser, verboso)
 
     # Executa tb
     comando = f'ghdl -r {argumentos} {arquivo} --wave={modulo}_tb.ghw'
     Mensagens.comando(f'\t{comando}', 3)
-    chama_comando(comando, parser)
+    chama_comando(comando, parser, verboso)
 
 
 def gera_resultados(modulo):
@@ -165,12 +188,12 @@ def gera_resultados(modulo):
             shutil.move(arquivo, resultados_modulo / arquivo)
 
 
-def mostra_ondas(modulo, parser):
+def mostra_ondas(modulo, parser, verboso):
     ghw = Path('resultados', modulo, f'{modulo}_tb.ghw')
     gtkw = Path('gtkw', f'{modulo}.gtkw')
     comando = f'gtkwave {ghw} -a {gtkw}'
     Mensagens.comando(f'\t{comando}', 4)
-    chama_comando(comando, parser)
+    chama_comando(comando, parser, verboso)
 
 
 if __name__ == '__main__':
@@ -186,15 +209,15 @@ if __name__ == '__main__':
     move_arquivos(modulos)
     with working_directory('build'):
         flags = '--std=08'
-        compila_pacote(flags, parser)
+        compila_pacote(flags, parser, args.verboso)
         for modulo in modulos:
-            compila_modulo(modulo, flags, parser)
+            compila_modulo(modulo, flags, parser, args.verboso)
 
             gera_resultados(modulo)
 
             with working_directory('..'):
                 if args.wave:
-                    mostra_ondas(modulo, parser)
+                    mostra_ondas(modulo, parser, args.verboso)
 
         # Remove biblioteca work
         for arquivo in Path('.').glob('work-*.cf'):
