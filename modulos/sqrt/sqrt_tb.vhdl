@@ -5,56 +5,54 @@ use std.env.finish;
 
 library work;
 use work.pacote_aux.all;
-
-
 entity sqrt_tb is
 end sqrt_tb;
 
 architecture sim of sqrt_tb is
-    
+
     -- |----------------------------------------------------------------------------------|
     -- |                                          ATENÇÃO                                 |
     -- | Sempre que `parte_inteira`, `parte_fracionaria` ou `iteracoes` mudar, o valor de |
     -- | `max_iter` deve ser recalculado utilizando a fórmula:                            |
-    -- | $$                                                                               |
+    -- | $                                                                               |
     -- | max_iter = 2^(parte_inteira - parte_fracionaria) * (iteracoes + 3)               |
-    -- | $$                                                                               |
+    -- | $                                                                               |
     -- |----------------------------------------------------------------------------------|
-    constant iteracoes          : integer := 7;
-    constant max_iter           : integer := 327680;
-    signal   entrada_ponto_fixo : s_fixo := s_fixo_zero;
+    constant iteracoes        : integer := 7;
+    constant max_iter         : integer := 327680;
+    signal entrada_ponto_fixo : s_fixo  := s_fixo_zero;
 
     -- portas do componente
-    signal resultado          : s_fixo;
-    signal i_clk              : bit := '0';
-    signal i_init             : bit := '0';
-    signal i_reset            : bit := '0';
-    signal o_ocupado          : bit;
+    signal resultado : s_fixo;
+    signal i_clk     : bit := '0';
+    signal i_init    : bit := '0';
+    signal i_reset   : bit := '0';
+    signal o_ocupado : bit;
 
     -- contador de ciclos de clock
     signal contador : integer := 0;
 
     -- Escrita no arquivo de saída
-    file fptr: text;
+    file fptr : text;
 
-begin 
+begin
 
-    UUT: entity work.sqrt
+    UUT : entity work.sqrt
         generic map(
-            gen_iteracoes=>iteracoes
+            gen_iteracoes => iteracoes
         )
         port map(
-            i_clk=>i_clk,
-            i_init=>i_init,
-            i_reset=>i_reset,
-            i_x=>entrada_ponto_fixo,
-            o_sqrt_x=>resultado,
-            o_ocupado=>o_ocupado
+            i_clk     => i_clk,
+            i_init    => i_init,
+            i_reset   => i_reset,
+            i_x       => entrada_ponto_fixo,
+            o_sqrt_x  => resultado,
+            o_ocupado => o_ocupado
         );
-    
-    clock:  process
+
+    clock : process
     begin
-        i_clk <= not i_clk;
+        i_clk    <= not i_clk;
         contador <= contador + 1;
         wait for 400 ns; -- 50Mhz
 
@@ -66,7 +64,7 @@ begin
     end process clock;
 
     -- Inicia novo cálculo após finalização do último
-    inicia: process(i_clk)
+    inicia : process (i_clk)
     begin
         if rising_edge(i_clk) then
             if o_ocupado = '0' then
@@ -78,9 +76,9 @@ begin
     end process inicia;
 
     -- Salva resultados no arquivo .csv quando finalizado
-    incremento: process(o_ocupado)
-    variable fstatus       :file_open_status;
-    variable file_line     :line;
+    incremento : process (o_ocupado)
+        variable fstatus   : file_open_status;
+        variable file_line : line;
     begin
         if falling_edge(o_ocupado) then
             -- Escreve o cabeçalho
@@ -89,16 +87,14 @@ begin
                 write(file_line, string'("x;sqrt(x)"), left, 9);
                 writeline(fptr, file_line);
             end if;
-            
-            write(file_line, entrada_ponto_fixo, left, 16);
+
+            write(file_line, entrada_ponto_fixo, left, parte_inteira - parte_fracionaria + 1);
             write(file_line, string'(";"), left, 1);
-            write(file_line, resultado, left, 16);
+            write(file_line, resultado, left, parte_inteira - parte_fracionaria + 1);
             writeline(fptr, file_line);
-            
+
             -- Atualiza x
-            entrada_ponto_fixo <= resize(arg=>entrada_ponto_fixo+s_fixo_lsb, size_res=>entrada_ponto_fixo);
+            entrada_ponto_fixo <= resize(arg => entrada_ponto_fixo + s_fixo_lsb, size_res => entrada_ponto_fixo);
         end if;
     end process incremento;
-    
-
 end architecture sim;

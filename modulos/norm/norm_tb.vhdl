@@ -5,8 +5,6 @@ use std.env.finish;
 
 library work;
 use work.pacote_aux.all;
-
-
 entity norm_tb is
 end norm_tb;
 
@@ -14,37 +12,35 @@ architecture sim of norm_tb is
     signal entrada_ponto_fixo : s_fixo := s_fixo_min;
 
     -- portas do componente
-    signal resultado          : s_fixo;
+    signal resultado : s_fixo;
 
     -- Escrita no arquivo de saída
-    file fptr: text;
+    file fptr : text;
 
-begin 
+begin
 
-    UUT: entity work.norm
+    UUT : entity work.norm
         generic map(
-            gen_max_x=>s_fixo_max,
-            gen_min_x=>s_fixo_min
+            gen_max_x => s_fixo_max,
+            gen_min_x => s_fixo_min
         )
         port map(
-            i_x=>entrada_ponto_fixo,
-            o_x_norm=>resultado
+            i_x      => entrada_ponto_fixo,
+            o_x_norm => resultado
         );
-    
-    clock:  process
+
+    clock : process
     begin
-        entrada_ponto_fixo <= resize(arg=>entrada_ponto_fixo + 0.0000610352,
-                                     size_res=>entrada_ponto_fixo);
+        entrada_ponto_fixo <= resize(arg => entrada_ponto_fixo + 0.0000610352,
+            size_res                         => entrada_ponto_fixo);
         wait for 1 ns;
         if entrada_ponto_fixo = s_fixo_max then
             finish;
         end if;
     end process clock;
-
-
-    incremento: process(entrada_ponto_fixo)
-    variable fstatus       :file_open_status;
-    variable file_line     :line;
+    incremento : process (entrada_ponto_fixo)
+        variable fstatus   : file_open_status;
+        variable file_line : line;
     begin
         if (entrada_ponto_fixo = s_fixo_min) then
             file_open(fstatus, fptr, "norm.csv", write_mode);
@@ -56,9 +52,5 @@ begin
             write(file_line, resultado, left, 16);
             writeline(fptr, file_line);
         end if;
-        
-        
     end process incremento;
-    
-
 end architecture sim;

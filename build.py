@@ -91,15 +91,20 @@ def recebe_argumentos():
 def ajusta_dependencia(modulos, dependente, *dependencias):
     for dependencia in dependencias:
         try:
-            modulos.append(modulos.pop(modulos.index(dependencia))) # coloca o item ao final da lista
+            modulos.append(
+                modulos.pop(modulos.index(dependencia))
+            )   # coloca o item ao final da lista
         except ValueError:
             modulos.append(dependencia)
-    modulos.append(modulos.pop(modulos.index(dependente))) # coloca o item ao final da lista
+    modulos.append(
+        modulos.pop(modulos.index(dependente))
+    )   # coloca o item ao final da lista
     return modulos
+
 
 def seleciona_modulos(args, parser):
     if args.todos:
-        modulos =  [
+        modulos = [
             caminho
             for caminho in Path('modulos').glob('*')
             if caminho.is_dir()

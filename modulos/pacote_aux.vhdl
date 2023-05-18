@@ -4,8 +4,9 @@ use ieee.std_logic_1164.all;
 
 package pacote_aux is
 
-    constant parte_inteira     : integer :=   1;
-    constant parte_fracionaria : integer := -14;
+    -- -------------------------- Definições de constantes --------------------------
+    constant parte_inteira     : integer := 1;
+    constant parte_fracionaria : integer := - 14;
     constant tamanho           : integer := parte_inteira - parte_fracionaria;
 
     constant vec_zero      : std_logic_vector(tamanho downto 0) := (others => '0');
@@ -25,12 +26,24 @@ package pacote_aux is
     constant u_fixo_lsb : ufixed(parte_inteira downto parte_fracionaria) := to_ufixed(vec_lsb, parte_inteira, parte_fracionaria);
     constant u_fixo_msb : ufixed(parte_inteira downto parte_fracionaria) := to_ufixed(vec_msb, parte_inteira, parte_fracionaria);
 
+    -- ----------------------------- Definições de tipos ----------------------------
     subtype s_fixo is sfixed(parte_inteira downto parte_fracionaria);
     subtype u_fixo is ufixed(parte_inteira downto parte_fracionaria);
 
-    type vec_s_fixo  is array (integer range <>) of s_fixo;
-    type vec_u_fixo  is array (integer range <>) of s_fixo;
-    type vec_inteiro is array (integer range<>) of integer;
-        
-        
+    type vec_s_fixo is array (integer range <>) of s_fixo;
+    type vec_u_fixo is array (integer range <>) of s_fixo;
+    type vec_inteiro is array (integer range <>) of integer;
+
+    type mat_s_fixo is record
+        linhas    : integer;
+        colunas   : integer;
+        elementos : vec_s_fixo;
+    end record mat_s_fixo;
+
+    type mat_u_fixo is record
+        linhas    : integer;
+        colunas   : integer;
+        elementos : vec_u_fixo;
+    end record mat_s_fixo;
+
 end package pacote_aux;
