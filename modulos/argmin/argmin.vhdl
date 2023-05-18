@@ -1,10 +1,5 @@
 library ieee;
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
 use ieee.fixed_pkg.all;
-
-library std;
-use std.textio.all;
 
 library work;
 use work.pacote_aux.all;
@@ -30,7 +25,6 @@ architecture insercao of argmin is
     signal deve_inserir: bit := '0';
     signal inicia_insercao: bit := '0';
     signal inserindo : bit := '0';
-    signal finalizou_insercao : bit := '0';
     signal elementos   : vec_s_fixo(gen_n_elementos - 1 downto 0);   -- vetor de entradas
     signal indices     : vec_inteiro(gen_k downto 0) := (others => gen_n_elementos - 1);  -- resultado
     signal c_elemento  : integer := 0;
@@ -88,7 +82,6 @@ begin
 
         if o_ocupado = '1' and  insere_ocupado = '0' and inserindo = '1' then
             indices <= resultado_insere;
-            finalizou_insercao <= '1';
             c_indices <= 0;
             deve_inserir <= '0';
             if c_elemento < gen_n_elementos - 1 then

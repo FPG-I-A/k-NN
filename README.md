@@ -1,4 +1,7 @@
-# O algoritmo
+# KNN
+
+## O algoritmo
+
 K-NN, sigla em inglês para k vizinhos mais próximos é um algoritmo simples de aprendizagem de máquina para tarefas de classificação. O algoritmo consiste em calcular a distância das características da amostra de inferência que se deseja classificar até cada uma das amostras de treino. Para o cálculo de distância utilizaremos a distância euclidiana, definida por:
 
 $$
@@ -11,8 +14,6 @@ Após calcular todas as distâncias o algoritmo coloca a amostra de inferência 
 
 Exemplo, utilizando um valor de k = 5 e com as 5 distâncias e classificações mostradas na tabela abaixo, a amostra de inferência é colocada na classe 1.
 
-<center>
-
 | **Amostra** |  **Distância**  | **Classe** |
 |:-----------:|:---------------:|:----------:|
 |      1      |       0.35      |      1     |
@@ -20,9 +21,9 @@ Exemplo, utilizando um valor de k = 5 e com as 5 distâncias e classificações 
 |      3      |       0.57      |      1     |
 |      4      |       3.97      |      0     |
 |      5      |       2.3       |      1     |
-</center>
 
-# Módulos implementados
+## Módulos implementados
+
 Uma descrição de hardware em VHDL é realizada criando e unindo diversos blocos de circuitos digitais. Assim, para criar o algoritmo vários blocos com funções limitadas foram criados.
 
 O hardware de uma FPGA não possuí diversas operações matemáticas necessárias. Na realidade ele possuí apenas soma, subtração, multiplicação e divisão. Todas as outras operações devem ser implementadas de alguma forma.
