@@ -1,0 +1,44 @@
+[*]
+[*] GTKWave Analyzer v3.3.114 (w)1999-2023 BSI
+[*] Mon May 22 15:03:09 2023
+[*]
+[dumpfile] "/home/luis/git/k-NN/resultados/moda/moda_tb.ghw"
+[dumpfile_mtime] "Mon May 22 15:03:04 2023"
+[dumpfile_size] 2073
+[savefile] "/home/luis/git/k-NN/gtkw/moda.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-32.099998 5610000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.moda_tb.
+[treeopen] top.moda_tb.uut.
+[sst_width] 209
+[signals_width] 182
+[sst_expanded] 1
+[sst_vpaned_height] 157
+@28
+top.moda_tb.uut.i_clk
+top.moda_tb.uut.i_init
+top.moda_tb.o_ocupado
+top.moda_tb.uut.contar
+@420
+top.moda_tb.uut.maior
+@421
+top.moda_tb.uut.o_resultado
+@420
+top.moda_tb.i_elementos[0]
+top.moda_tb.i_elementos[1]
+top.moda_tb.i_elementos[2]
+top.moda_tb.i_elementos[3]
+top.moda_tb.i_elementos[4]
+top.moda_tb.i_elementos[5]
+top.moda_tb.i_elementos[6]
+top.moda_tb.i_elementos[7]
+top.moda_tb.i_elementos[8]
+top.moda_tb.i_elementos[9]
+top.moda_tb.uut.contador_classes[0]
+top.moda_tb.uut.contador_classes[1]
+top.moda_tb.uut.contador_classes[2]
+[pattern_trace] 1
+[pattern_trace] 0
