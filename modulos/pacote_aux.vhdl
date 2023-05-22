@@ -31,19 +31,10 @@ package pacote_aux is
     subtype u_fixo is ufixed(parte_inteira downto parte_fracionaria);
 
     type vec_s_fixo is array (integer range <>) of s_fixo;
-    type vec_u_fixo is array (integer range <>) of s_fixo;
+    type vec_u_fixo is array (integer range <>) of u_fixo;
     type vec_inteiro is array (integer range <>) of integer;
 
-    type mat_s_fixo is record
-        linhas    : integer;
-        colunas   : integer;
-        elementos : vec_s_fixo;
-    end record mat_s_fixo;
-
-    type mat_u_fixo is record
-        linhas    : integer;
-        colunas   : integer;
-        elementos : vec_u_fixo;
-    end record mat_s_fixo;
+    type mat_s_fixo is array(integer range <>, integer range<>) of s_fixo;
+    type mat_u_fixo is array(integer range <>, integer range<>) of u_fixo;
 
 end package pacote_aux;

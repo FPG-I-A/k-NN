@@ -122,7 +122,8 @@ def seleciona_modulos(args, parser):
         Path('modulos', 'argmin'): [Path('modulos', 'insere')],
     }
     for dependente, dependencias in dict_deps.items():
-        modulos = ajusta_dependencia(modulos, dependente, *dependencias)
+        if dependente in modulos: 
+            modulos = ajusta_dependencia(modulos, dependente, *dependencias)
     return modulos
 
 

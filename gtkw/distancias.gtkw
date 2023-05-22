@@ -1,0 +1,34 @@
+[*]
+[*] GTKWave Analyzer v3.3.114 (w)1999-2023 BSI
+[*] Fri May 19 15:07:33 2023
+[*]
+[dumpfile] "/home/luis/git/k-NN/resultados/distancias/distancias_tb.ghw"
+[dumpfile_mtime] "Fri May 19 15:07:02 2023"
+[dumpfile_size] 279119
+[savefile] "/home/luis/git/k-NN/gtkw/distancias.gtkw"
+[timestart] 0
+[size] 1280 988
+[pos] 1280 420
+*-36.299999 35100000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.distancias_tb.
+[treeopen] top.distancias_tb.o_resultado.
+[sst_width] 209
+[signals_width] 239
+[sst_expanded] 1
+[sst_vpaned_height] 291
+@28
+top.distancias_tb.i_clk
+top.distancias_tb.i_init
+@420
+top.distancias_tb.o_amostra
+@28
+top.distancias_tb.o_ocupado
+@420
+top.distancias_tb.uut.contador_caracteristica
+top.distancias_tb.uut.contador_elemento
+@40000421
+[fpshift_count] 24
+#{top.distancias_tb.o_resultado[99][8:-24]} top.distancias_tb.o_resultado[99][8] top.distancias_tb.o_resultado[99][7] top.distancias_tb.o_resultado[99][6] top.distancias_tb.o_resultado[99][5] top.distancias_tb.o_resultado[99][4] top.distancias_tb.o_resultado[99][3] top.distancias_tb.o_resultado[99][2] top.distancias_tb.o_resultado[99][1] top.distancias_tb.o_resultado[99][0] top.distancias_tb.o_resultado[99][-1] top.distancias_tb.o_resultado[99][-2] top.distancias_tb.o_resultado[99][-3] top.distancias_tb.o_resultado[99][-4] top.distancias_tb.o_resultado[99][-5] top.distancias_tb.o_resultado[99][-6] top.distancias_tb.o_resultado[99][-7] top.distancias_tb.o_resultado[99][-8] top.distancias_tb.o_resultado[99][-9] top.distancias_tb.o_resultado[99][-10] top.distancias_tb.o_resultado[99][-11] top.distancias_tb.o_resultado[99][-12] top.distancias_tb.o_resultado[99][-13] top.distancias_tb.o_resultado[99][-14] top.distancias_tb.o_resultado[99][-15] top.distancias_tb.o_resultado[99][-16] top.distancias_tb.o_resultado[99][-17] top.distancias_tb.o_resultado[99][-18] top.distancias_tb.o_resultado[99][-19] top.distancias_tb.o_resultado[99][-20] top.distancias_tb.o_resultado[99][-21] top.distancias_tb.o_resultado[99][-22] top.distancias_tb.o_resultado[99][-23] top.distancias_tb.o_resultado[99][-24]
+[pattern_trace] 1
+[pattern_trace] 0
