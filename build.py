@@ -8,6 +8,8 @@ from subprocess import DEVNULL, call
 from colorama import Fore, Style
 from colorama import init as colorama_init
 
+from pacote import gera
+
 
 class Mensagens:
     def erro(string, parser):
@@ -75,6 +77,30 @@ def recebe_argumentos():
         action='store_true',
         help='Resultados mais verbosos.',
     )
+    parser.add_argument(
+        '-i',
+        '--parte_inteira',
+        action='store',
+        help='Quantidade de bits na parte real da representação de ponto fixo. Valor padrão: 1',
+    )
+    parser.add_argument(
+        '-f',
+        '--parte_fracionaria',
+        action='store',
+        help='Quantidade de bits na parte fracionaria da representação de ponto fixo. Valor padrão: 14',
+    )
+    parser.add_argument(
+        '-s',
+        '--seed',
+        action='store',
+        help='Seed do gerador de números aleatórios para separação de conjunto de treino e teste. Valor padrão: 42',
+    )
+    parser.add_argument(
+        '-p',
+        '--percentual_teste',
+        action='store',
+        help='Percentual do dataset utilizado para teste. Valor padrão: 33.',
+    )
     args = parser.parse_args()
     if args.modulo is not None and args.todos:
         Mensagens.erro(
@@ -86,6 +112,57 @@ def recebe_argumentos():
         )
 
     return parser, args
+
+
+def ajusta_padroes(args, parser):
+
+    if args.parte_inteira is not None:
+        try:
+            parte_inteira = int(args.parte_inteira)
+        except ValueError:
+            Mensagens.erro(
+                f'O valor de parte_inteira deve ser um número inteiro, mas você forneceu {args.parte_inteira}',
+                parser,
+            )
+    else:
+        parte_inteira = 1
+
+    if args.parte_fracionaria is not None:
+        try:
+            parte_fracionaria = int(args.parte_fracionaria)
+        except ValueError:
+            Mensagens.erro(
+                f'O valor de parte_fracionaria deve ser um número inteiro, mas você forneceu {args.parte_fracionaria}',
+                parser,
+            )
+    else:
+        parte_fracionaria = 14
+
+    if args.seed is not None:
+        try:
+            seed = int(args.seed)
+        except ValueError:
+            Mensagens.erro(
+                f'O valor de seed deve ser um número inteiro, mas você forneceu {args.seed}',
+                parser,
+            )
+    else:
+        seed = 42
+
+    if args.percentual_teste is not None:
+        try:
+            percentual_teste = int(args.percentual_teste) / 100
+            if percentual_teste > 1 or percentual_teste < 0:
+                raise ValueError
+        except ValueError:
+            Mensagens.erro(
+                f'O valor de percentual_teste deve ser um número inteiro entre 0 e 100, mas você forneceu {args.percentual_teste}',
+                parser,
+            )
+    else:
+        percentual_teste = 14
+
+    return parte_inteira, parte_fracionaria, seed, percentual_teste
 
 
 def ajusta_dependencia(modulos, dependente, *dependencias):
@@ -122,7 +199,7 @@ def seleciona_modulos(args, parser):
         Path('modulos', 'argmin'): [Path('modulos', 'insere')],
     }
     for dependente, dependencias in dict_deps.items():
-        if dependente in modulos: 
+        if dependente in modulos:
             modulos = ajusta_dependencia(modulos, dependente, *dependencias)
     return modulos
 
@@ -140,14 +217,19 @@ def move_arquivos(modulos):
     dir_build = Path('build')
     dir_build.mkdir(exist_ok=True)
 
-    shutil.copy(
-        Path('modulos', 'pacote_aux.vhdl'), dir_build / 'pacote_aux.vhdl'
-    )
+    # shutil.copy(
+    #    Path('modulos', 'pacote_aux.vhdl'), dir_build / 'pacote_aux.vhdl'
+    # )
     for modulo in modulos:
         nome_arq = modulo + '.vhdl'
         nome_tb = modulo + '_tb.vhdl'
         shutil.copy(Path('modulos', modulo, nome_arq), dir_build / nome_arq)
         shutil.copy(Path('modulos', modulo, nome_tb), dir_build / nome_tb)
+
+
+def cria_pacote(parte_inteira, parte_fracionaria, seed, percentual_teste):
+    Mensagens.info('Gerando arquivo da biblioteca')
+    gera(parte_inteira, parte_fracionaria, seed, percentual_teste)
 
 
 def compila_pacote(argumentos, parser, verboso):
@@ -205,6 +287,10 @@ def mostra_ondas(modulo, parser, verboso):
 if __name__ == '__main__':
     colorama_init()
     parser, args = recebe_argumentos()
+
+    parte_inteira, parte_fracionaria, seed, percentual_teste = ajusta_padroes(
+        args, parser
+    )
     modulos = seleciona_modulos(args, parser)
     modulos = list(map(lambda p: p.stem, modulos))
 
@@ -215,6 +301,7 @@ if __name__ == '__main__':
     move_arquivos(modulos)
     with working_directory('build'):
         flags = '--std=08'
+        cria_pacote(parte_inteira, parte_fracionaria, seed, percentual_teste)
         compila_pacote(flags, parser, args.verboso)
         for modulo in modulos:
             compila_modulo(modulo, flags, parser, args.verboso)
