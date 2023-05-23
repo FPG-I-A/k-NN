@@ -160,7 +160,7 @@ def ajusta_padroes(args, parser):
                 parser,
             )
     else:
-        percentual_teste = 14
+        percentual_teste = 33
 
     return parte_inteira, parte_fracionaria, seed, percentual_teste
 
