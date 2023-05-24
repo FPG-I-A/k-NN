@@ -81,13 +81,13 @@ def recebe_argumentos():
         '-i',
         '--parte_inteira',
         action='store',
-        help='Quantidade de bits na parte real da representação de ponto fixo. Valor padrão: 1',
+        help='Quantidade de bits na parte real da representação de ponto fixo. Valor padrão: 3',
     )
     parser.add_argument(
         '-f',
         '--parte_fracionaria',
         action='store',
-        help='Quantidade de bits na parte fracionaria da representação de ponto fixo. Valor padrão: 14',
+        help='Quantidade de bits na parte fracionaria da representação de ponto fixo. Valor padrão: 12',
     )
     parser.add_argument(
         '-s',
@@ -125,7 +125,7 @@ def ajusta_padroes(args, parser):
                 parser,
             )
     else:
-        parte_inteira = 1
+        parte_inteira = 3
 
     if args.parte_fracionaria is not None:
         try:
@@ -136,7 +136,7 @@ def ajusta_padroes(args, parser):
                 parser,
             )
     else:
-        parte_fracionaria = 14
+        parte_fracionaria = 12
 
     if args.seed is not None:
         try:

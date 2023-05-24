@@ -117,6 +117,7 @@ def escreve_vetor(
             string = string + '\t'
 
         arquivo.writelines([string])
+    arquivo.writelines(['\n'])
 
 
 def escreve_matriz(
@@ -145,11 +146,11 @@ def escreve_matriz(
             string = string + '\n'
 
         linhas.append(string)
-    linhas.append('\t);\n')
+    linhas.append('\t);\n\n')
     arquivo.writelines(linhas)
 
 
-def cria_dataset(arquivo, nome, dados):
+def cria_dataset(arquivo, nome, dados, amostras_treino, amostras_teste):
     arquivo.writelines(
         [
             f'\t-- ---------------------------------- {nome} ----------------------------------\n'
@@ -158,9 +159,11 @@ def cria_dataset(arquivo, nome, dados):
 
     # Checa se é vetor ou matriz
     if 'x' in nome:
-        quantidade_linhas = dados.shape[0] - 1
         quantidade_caracteristicas = dados.shape[1] - 1
-        declaracao = f'\tconstant {nome} : mat_s_fixo({quantidade_linhas} downto 0, {quantidade_caracteristicas} downto 0) := (\n'
+        if 'treino' in nome:
+            declaracao = f'\tconstant {nome} : mat_s_fixo(amostras_treino - 1 downto 0, n_caracteristicas - 1 downto 0) := (\n'
+        else:
+            declaracao = f'\tconstant {nome} : mat_s_fixo(amostras_teste - 1 downto 0, n_caracteristicas -1 downto 0) := (\n'
         espacos = len(declaracao) + 4
 
         arquivo.writelines([declaracao])
@@ -168,14 +171,15 @@ def cria_dataset(arquivo, nome, dados):
             arquivo,
             dados,
             espacos,
-            quantidade_linhas,
+            dados.shape[0] - 1,
             quantidade_caracteristicas,
         )
     else:
         quantidade = dados.shape[0] - 1
-        declaracao = (
-            f'\tconstant {nome} : vec_inteiro({quantidade} downto 0) := (\n'
-        )
+        if 'treino' in nome:
+            declaracao = f'\tconstant {nome} : vec_inteiro(amostras_treino - 1 downto 0) := (\n'
+        else:
+            declaracao = f'\tconstant {nome} : vec_inteiro(amostras_teste - 1 downto 0) := (\n'
         espacos = len(declaracao) + 4
 
         arquivo.writelines([declaracao])
@@ -191,7 +195,21 @@ def gera(parte_inteira, parte_fracionaria, seed=42, tamanho_teste=0.33):
         cria_cabecalho(arquivo)
         cria_costantes(arquivo, parte_inteira, parte_fracionaria)
         cria_tipos(arquivo)
+
+        amostras_treino = dados[0].shape[0]
+        amostras_teste = dados[1].shape[0]
+        n_classes = dados[3].shape[1]
+        n_caracteristicas = dados[0].shape[1]
+
+        linhas = [
+            f'\t-- ---------------------------------- Dataset ----------------------------------\n',
+            f'\t constant amostras_treino   : integer := {amostras_treino};\n'
+            f'\t constant amostras_teste    : integer := {amostras_teste};\n'
+            f'\t constant n_classes         : integer := {n_classes};\n'
+            f'\t constant n_caracteristicas : integer := {n_caracteristicas};\n\n',
+        ]
+        arquivo.writelines(linhas)
         for nome, dado in zip(nomes, dados):
-            cria_dataset(arquivo, nome, dado)
+            cria_dataset(arquivo, nome, dado, amostras_treino, amostras_teste)
 
         arquivo.writelines(['end package pacote_aux;\n'])

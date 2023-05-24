@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.114 (w)1999-2023 BSI
-[*] Fri May 19 11:56:55 2023
+[*] Wed May 24 09:57:25 2023
 [*]
-[dumpfile] "/home/luis/git/k-NN/resultados/sqrt/sqrt_tb.ghw"
-[dumpfile_mtime] "Fri May 19 11:56:50 2023"
-[dumpfile_size] 7205075
-[savefile] "/home/luis/git/k-NN/gtkw/sqrt.gtkw"
+[dumpfile] "/home/luis.amorim/git/k-nn/resultados/sqrt/sqrt_tb.ghw"
+[dumpfile_mtime] "Wed May 24 09:56:31 2023"
+[dumpfile_size] 7547199
+[savefile] "/home/luis.amorim/git/k-nn/gtkw/sqrt.gtkw"
 [timestart] 0
-[size] 1280 988
-[pos] 199 -23
-*-33.299999 30080000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1920 988
+[pos] 0 0
+*-33.299999 65537680000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.sqrt_tb.
 [treeopen] top.sqrt_tb.uut.
@@ -22,10 +22,9 @@ top.sqrt_tb.uut.i_clk
 top.sqrt_tb.uut.i_init
 top.sqrt_tb.uut.o_ocupado
 @40000421
-[fpshift_count] 14
-#{top.sqrt_tb.entrada_ponto_fixo[1:-14]} top.sqrt_tb.entrada_ponto_fixo[1] top.sqrt_tb.entrada_ponto_fixo[0] top.sqrt_tb.entrada_ponto_fixo[-1] top.sqrt_tb.entrada_ponto_fixo[-2] top.sqrt_tb.entrada_ponto_fixo[-3] top.sqrt_tb.entrada_ponto_fixo[-4] top.sqrt_tb.entrada_ponto_fixo[-5] top.sqrt_tb.entrada_ponto_fixo[-6] top.sqrt_tb.entrada_ponto_fixo[-7] top.sqrt_tb.entrada_ponto_fixo[-8] top.sqrt_tb.entrada_ponto_fixo[-9] top.sqrt_tb.entrada_ponto_fixo[-10] top.sqrt_tb.entrada_ponto_fixo[-11] top.sqrt_tb.entrada_ponto_fixo[-12] top.sqrt_tb.entrada_ponto_fixo[-13] top.sqrt_tb.entrada_ponto_fixo[-14]
-@40000420
-[fpshift_count] 14
-#{top.sqrt_tb.resultado[1:-14]} top.sqrt_tb.resultado[1] top.sqrt_tb.resultado[0] top.sqrt_tb.resultado[-1] top.sqrt_tb.resultado[-2] top.sqrt_tb.resultado[-3] top.sqrt_tb.resultado[-4] top.sqrt_tb.resultado[-5] top.sqrt_tb.resultado[-6] top.sqrt_tb.resultado[-7] top.sqrt_tb.resultado[-8] top.sqrt_tb.resultado[-9] top.sqrt_tb.resultado[-10] top.sqrt_tb.resultado[-11] top.sqrt_tb.resultado[-12] top.sqrt_tb.resultado[-13] top.sqrt_tb.resultado[-14]
+[fpshift_count] 12
+#{top.sqrt_tb.entrada_ponto_fixo[3:-12]} top.sqrt_tb.entrada_ponto_fixo[3] top.sqrt_tb.entrada_ponto_fixo[2] top.sqrt_tb.entrada_ponto_fixo[1] top.sqrt_tb.entrada_ponto_fixo[0] top.sqrt_tb.entrada_ponto_fixo[-1] top.sqrt_tb.entrada_ponto_fixo[-2] top.sqrt_tb.entrada_ponto_fixo[-3] top.sqrt_tb.entrada_ponto_fixo[-4] top.sqrt_tb.entrada_ponto_fixo[-5] top.sqrt_tb.entrada_ponto_fixo[-6] top.sqrt_tb.entrada_ponto_fixo[-7] top.sqrt_tb.entrada_ponto_fixo[-8] top.sqrt_tb.entrada_ponto_fixo[-9] top.sqrt_tb.entrada_ponto_fixo[-10] top.sqrt_tb.entrada_ponto_fixo[-11] top.sqrt_tb.entrada_ponto_fixo[-12]
+[fpshift_count] 12
+#{top.sqrt_tb.resultado[3:-12]} top.sqrt_tb.resultado[3] top.sqrt_tb.resultado[2] top.sqrt_tb.resultado[1] top.sqrt_tb.resultado[0] top.sqrt_tb.resultado[-1] top.sqrt_tb.resultado[-2] top.sqrt_tb.resultado[-3] top.sqrt_tb.resultado[-4] top.sqrt_tb.resultado[-5] top.sqrt_tb.resultado[-6] top.sqrt_tb.resultado[-7] top.sqrt_tb.resultado[-8] top.sqrt_tb.resultado[-9] top.sqrt_tb.resultado[-10] top.sqrt_tb.resultado[-11] top.sqrt_tb.resultado[-12]
 [pattern_trace] 1
 [pattern_trace] 0
