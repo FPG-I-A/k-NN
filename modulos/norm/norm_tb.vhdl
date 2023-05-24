@@ -14,8 +14,6 @@ architecture sim of norm_tb is
     -- portas do componente
     signal resultado : s_fixo;
 
-    -- Escrita no arquivo de saída
-    file fptr : text;
 
 begin
 
@@ -31,26 +29,11 @@ begin
 
     clock : process
     begin
-        entrada_ponto_fixo <= resize(arg => entrada_ponto_fixo + 0.0000610352,
+        entrada_ponto_fixo <= resize(arg => entrada_ponto_fixo + s_fixo_lsb,
             size_res                         => entrada_ponto_fixo);
         wait for 1 ns;
         if entrada_ponto_fixo = s_fixo_max then
             finish;
         end if;
     end process clock;
-    incremento : process (entrada_ponto_fixo)
-        variable fstatus   : file_open_status;
-        variable file_line : line;
-    begin
-        if (entrada_ponto_fixo = s_fixo_min) then
-            file_open(fstatus, fptr, "norm.csv", write_mode);
-            write(file_line, string'("x;norm(x)"), left, 9);
-            writeline(fptr, file_line);
-        else
-            write(file_line, entrada_ponto_fixo, left, 16);
-            write(file_line, string'(";"), left, 1);
-            write(file_line, resultado, left, 16);
-            writeline(fptr, file_line);
-        end if;
-    end process incremento;
 end architecture sim;
