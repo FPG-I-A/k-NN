@@ -20,7 +20,6 @@ architecture sim of norm_tb is
 
     -- contador de ciclos de clock
     signal contador            : integer := 0;
-    signal conta_normalizacoes : integer := 0;
 
 
 begin
