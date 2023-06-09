@@ -9,14 +9,7 @@ from sklearn.model_selection import train_test_split
 
 def recebe_dados(seed, tamanho_teste):
     # Baixa conjunto de dados e salva dados crus
-    dir = Path('..', 'Dados')
-    dir.mkdir(exist_ok=True)
-    dados_crus = dir / 'iris.csv'
-    response = requests.get(
-        'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
-    )
-    with open(dados_crus, mode='wb') as f:
-        f.write(response.content)
+    dados_crus = Path('..', 'Dados', 'iris.csv')
 
     # Carrega conjuntos de dados
     x = np.loadtxt(dados_crus, delimiter=',', usecols=[0, 1, 2, 3])
@@ -39,10 +32,10 @@ def recebe_dados(seed, tamanho_teste):
     y = np.array(y)
 
     # Separa conjunto de treino e teste e calcula resultados
-    separados = train_test_split(
+    dados = train_test_split(
         x, y, test_size=tamanho_teste, random_state=seed
     )
-    return separados
+    return dados
 
 
 def cria_cabecalho(arquivo):
@@ -203,13 +196,34 @@ def gera(parte_inteira, parte_fracionaria, seed=42, tamanho_teste=0.33):
 
         linhas = [
             f'\t-- ---------------------------------- Dataset ----------------------------------\n',
-            f'\t constant amostras_treino   : integer := {amostras_treino};\n'
-            f'\t constant amostras_teste    : integer := {amostras_teste};\n'
-            f'\t constant n_classes         : integer := {n_classes};\n'
-            f'\t constant n_caracteristicas : integer := {n_caracteristicas};\n\n',
+            f'\tconstant amostras_treino   : integer := {amostras_treino};\n'
+            f'\tconstant amostras_teste    : integer := {amostras_teste};\n'
+            f'\tconstant n_classes         : integer := {n_classes};\n'
+            f'\tconstant n_caracteristicas : integer := {n_caracteristicas};\n\n',
         ]
+        
+        linha = f'\tconstant maior_por_caracteristica : vec_s_fixo({n_caracteristicas} - 1 downto 0) := ('
+        for i in range(dados[0].shape[1]):
+            linha = linha + f'{i}=>to_sfixed({np.max(dados[0][:,i])}, s_fixo_min), '
+        linha =  linha[:-2] + ');\n'
+        linhas.append(linha)
+        
+        linha = f'\tconstant menor_por_caracteristica : vec_s_fixo({n_caracteristicas} - 1 downto 0) := ('
+        for i in range(dados[0].shape[1]):
+            linha = linha + f'{i}=>to_sfixed({np.min(dados[0][:,i])}, s_fixo_min), '
+        linha =  linha[:-2] + ');\n\n'
+        linhas.append(linha)
+
         arquivo.writelines(linhas)
+
+        x_treino = dados[0]
+        for i in range(x_treino.shape[1]):
+            x_treino[:,i] = (x_treino[:,i] - np.min(x_treino[:,i])) / (np.max(x_treino[:,i]) - np.min(x_treino[:,i]))
         for nome, dado in zip(nomes, dados):
             cria_dataset(arquivo, nome, dado, amostras_treino, amostras_teste)
 
         arquivo.writelines(['end package pacote_aux;\n'])
+
+
+if __name__ == '__main__':
+    gera(2, 14) 
