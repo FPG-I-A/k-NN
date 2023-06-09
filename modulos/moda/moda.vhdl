@@ -47,14 +47,14 @@ begin
         end if;
 
         if o_ocupado = '1' and contar = '0' then -- argmax
-            if contador_classes(contador) > contador_classes(maior) then
+            if contador < gen_n_classes and contador_classes(contador) > contador_classes(maior) then
                 maior <= contador;
             end if;
-            contador <= contador + 1;
-            if contador = gen_n_classes - 1 then
+            if contador = gen_n_classes then
                 o_resultado <= maior;
                 o_ocupado   <= '0';
             end if;
+            contador <= contador + 1;
         end if;
     end process calcula;
 

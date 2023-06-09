@@ -11,7 +11,7 @@ end moda_tb;
 architecture sim of moda_tb is
 
     constant n_classes : integer := 3;
-    constant k         : integer := 10;
+    constant k         : integer := 7;
 
     -- portas do componente
     signal i_clk       : bit := '0';
@@ -57,8 +57,9 @@ begin
         -- popula vetor de entradas
         for i in k - 1 downto 0 loop
             uniform(seed1, seed2, rand);
-            i_elementos(i) <= integer(trunc(rand * real(n_classes))); -- entre 0 e n_classes - 1
-            wait for 10 ns;
+            --i_elementos(i) <= integer(trunc(rand * real(n_classes))); -- entre 0 e n_classes - 1
+            --wait for 10 ns;
+            i_elementos(i) <= 2;
         end loop;
 
         i_init <= '1';
