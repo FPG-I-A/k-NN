@@ -197,7 +197,12 @@ def seleciona_modulos(args, parser):
     # após suas dependências
     dict_deps = {
         Path('modulos', 'argmin'): [Path('modulos', 'insere')],
-        Path('modulos', 'knn') : list(map(lambda modulo: Path('modulos', modulo), ['distancias', 'insere', 'moda', 'norm', 'argmin']))
+        Path('modulos', 'knn'): list(
+            map(
+                lambda modulo: Path('modulos', modulo),
+                ['distancias', 'insere', 'moda', 'norm', 'argmin'],
+            )
+        ),
     }
     for dependente, dependencias in dict_deps.items():
         if dependente in modulos:

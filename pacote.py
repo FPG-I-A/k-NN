@@ -32,9 +32,7 @@ def recebe_dados(seed, tamanho_teste):
     y = np.array(y)
 
     # Separa conjunto de treino e teste e calcula resultados
-    dados = train_test_split(
-        x, y, test_size=tamanho_teste, random_state=seed
-    )
+    dados = train_test_split(x, y, test_size=tamanho_teste, random_state=seed)
     return dados
 
 
@@ -201,24 +199,32 @@ def gera(parte_inteira, parte_fracionaria, seed=42, tamanho_teste=0.33):
             f'\tconstant n_classes         : integer := {n_classes};\n'
             f'\tconstant n_caracteristicas : integer := {n_caracteristicas};\n\n',
         ]
-        
+
         linha = f'\tconstant maior_por_caracteristica : vec_s_fixo({n_caracteristicas} - 1 downto 0) := ('
         for i in range(dados[0].shape[1]):
-            linha = linha + f'{i}=>to_sfixed({np.max(dados[0][:,i])}, s_fixo_min), '
-        linha =  linha[:-2] + ');\n'
+            linha = (
+                linha
+                + f'{i}=>to_sfixed({np.max(dados[0][:,i])}, s_fixo_min), '
+            )
+        linha = linha[:-2] + ');\n'
         linhas.append(linha)
-        
+
         linha = f'\tconstant menor_por_caracteristica : vec_s_fixo({n_caracteristicas} - 1 downto 0) := ('
         for i in range(dados[0].shape[1]):
-            linha = linha + f'{i}=>to_sfixed({np.min(dados[0][:,i])}, s_fixo_min), '
-        linha =  linha[:-2] + ');\n\n'
+            linha = (
+                linha
+                + f'{i}=>to_sfixed({np.min(dados[0][:,i])}, s_fixo_min), '
+            )
+        linha = linha[:-2] + ');\n\n'
         linhas.append(linha)
 
         arquivo.writelines(linhas)
 
         x_treino = dados[0]
         for i in range(x_treino.shape[1]):
-            x_treino[:,i] = (x_treino[:,i] - np.min(x_treino[:,i])) / (np.max(x_treino[:,i]) - np.min(x_treino[:,i]))
+            x_treino[:, i] = (x_treino[:, i] - np.min(x_treino[:, i])) / (
+                np.max(x_treino[:, i]) - np.min(x_treino[:, i])
+            )
         for nome, dado in zip(nomes, dados):
             cria_dataset(arquivo, nome, dado, amostras_treino, amostras_teste)
 
@@ -226,4 +232,4 @@ def gera(parte_inteira, parte_fracionaria, seed=42, tamanho_teste=0.33):
 
 
 if __name__ == '__main__':
-    gera(2, 14) 
+    gera(2, 14)

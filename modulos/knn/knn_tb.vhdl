@@ -80,15 +80,26 @@ begin
     end process inicia;
 
     -- Salva resultados no arquivo .csv quando finalizado
-    incremento : process (o_ocupado)
+    salva : process (o_ocupado)
         variable fstatus   : file_open_status;
         variable file_line : line;
     begin
         if falling_edge(o_ocupado) then
-            -- Atualiza x
+
+            if contador = 0 then
+                file_open(fstatus, fptr, "knn.csv", write_mode);
+                write(file_line, string'("rotulo;predito"), left, 14);
+                writeline(fptr, file_line);
+            end if;
+
+            write(file_line, y_teste(contador), left, 1);
+            write(file_line, string'(";"), left, 1);
+            write(file_line, o_resultado, left, 1);
+            writeline(fptr, file_line);
+
             contador <= contador + 1;
             
         end if;
-    end process incremento;
+    end process salva;
 
 end architecture sim;
