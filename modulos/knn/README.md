@@ -1,5 +1,5 @@
 # KNN
-Descrição realizada em 
+Descrição realizada em [`README.md`](../../README.md)
 
 ## Mapeamento genérico
 
