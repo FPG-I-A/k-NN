@@ -1,5 +1,6 @@
 library ieee;
-use ieee.fixed_pkg.all;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 library work;
 use work.pacote_aux.all;
@@ -41,7 +42,7 @@ begin
             end loop;
 
             for id_amostra in gen_n_amostras - 1 downto 0 loop
-                o_resultado(id_amostra) <= to_sfixed(0, o_resultado(id_amostra));
+                o_resultado(id_amostra) <= s_fixo_zero;
             end loop;
 
         end if;

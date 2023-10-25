@@ -197,6 +197,7 @@ def seleciona_modulos(args, parser):
     # após suas dependências
     dict_deps = {
         Path('modulos', 'argmin'): [Path('modulos', 'insere')],
+        Path('modulos', 'knn') : list(map(lambda modulo: Path('modulos', modulo), ['distancias', 'insere', 'moda', 'norm', 'argmin']))
     }
     for dependente, dependencias in dict_deps.items():
         if dependente in modulos:
@@ -217,9 +218,6 @@ def move_arquivos(modulos):
     dir_build = Path('build')
     dir_build.mkdir(exist_ok=True)
 
-    # shutil.copy(
-    #    Path('modulos', 'pacote_aux.vhdl'), dir_build / 'pacote_aux.vhdl'
-    # )
     for modulo in modulos:
         nome_arq = modulo + '.vhdl'
         nome_tb = modulo + '_tb.vhdl'

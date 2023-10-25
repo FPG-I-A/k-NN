@@ -48,12 +48,10 @@ def fixo_para_float(fixo):
     return parte_inteira + parte_fracionaria
 
 
-
 def erros_sqrt():
-    
     def processa_linha(linha):
         return list(map(fixo_para_float, linha.split(';')))
-    
+
     with open(Path('resultados', 'sqrt', 'sqrt.csv')) as arquivo:
         arquivo.readline()
         dados = map(lambda string: string[:-1], arquivo.readlines())
@@ -68,15 +66,14 @@ def erros_sqrt():
     )
     print(f'Desvio padrão do erro: {stdev(erros):.2f}')
 
+
 def erros_distancia():
-    
     def distancia(vec_x, vec_y):
         resultado = 0
         for x, y in zip(vec_x, vec_y):
             resultado += (x - y) * (x - y)
         return abs(resultado)
-    
-    
+
     with open(Path('resultados', 'distancias', 'distancias.csv')) as arquivo:
         arquivo.readline()
         erros = []
@@ -101,11 +98,17 @@ def erros_distancia():
     print(f'Desvio padrão do erro: {stdev(erros):.2f}')
 
 
-def distancia(x, y):
-    resultado = 0
-    for valorx, valory in zip(x, y):
-        resultado += valorx * valorx - valory * valory
-    return abs(resultado)
+def acuracia():
+    acertos = 0
+    quantidade = 0
+    with open(Path('resultados', 'knn', 'knn.csv'), mode='r') as arquivo:
+        arquivo.readline()
+        for linha in arquivo.readlines():
+            quantidade += 1
+            rotulo, predito = list(map(lambda valor: int(valor), linha.split(';')))
+            if rotulo == predito:
+                acertos += 1    
+    print(f'Acurácia no conjunto de testes: {acertos / quantidade:.2%}')
 
 if __name__ == '__main__':
     modulo = parse_args()
@@ -115,4 +118,5 @@ if __name__ == '__main__':
             erros_sqrt()
         case 'distancias':
             erros_distancia()
-            funcao = distancia
+        case 'knn':
+            acuracia()

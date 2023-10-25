@@ -10,7 +10,7 @@ end moda_tb;
 
 architecture sim of moda_tb is
 
-    constant n_classes : integer := 3;
+    constant n_classes : integer := 5;
     constant k         : integer := 10;
 
     -- portas do componente
@@ -50,7 +50,7 @@ begin
     inicia : process
         -- Variáveis do gerador de números aleatórios
         variable seed1 : positive := 15648513;
-        variable seed2 : positive := 4789456;
+        variable seed2 : positive := 1;
         variable rand  : real;
     begin
 

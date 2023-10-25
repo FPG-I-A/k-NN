@@ -1,5 +1,6 @@
 library ieee;
-use ieee.fixed_pkg.all;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 use ieee.math_real.all;
 use std.textio.all;
 use std.env.finish;
@@ -13,6 +14,7 @@ architecture sim of distancias_tb is
 
     constant n_elementos       : integer := 100;
     constant n_caracteristicas : integer := 5;
+    constant mult_1 : real := 8192.0;
 
     -- portas do componente
     signal i_clk       : bit := '0';
@@ -65,7 +67,7 @@ begin
         for i in n_elementos - 1 downto 0 loop
             for j in n_caracteristicas - 1 downto 0 loop
                 uniform(seed1, seed2, rand);
-                i_elementos(i, j) <= to_sfixed(rand, i_elementos(i, j));
+                i_elementos(i, j) <= to_signed(INTEGER(rand * mult_1), tamanho);
                 wait for 10 ns;
             end loop;
         end loop;
@@ -73,7 +75,7 @@ begin
         -- popula vetor de referência
         for j in n_caracteristicas - 1 downto 0 loop
             uniform(seed1, seed2, rand);
-            i_valor(j) <= to_sfixed(rand, i_valor(j));
+            i_valor(j) <= to_signed(INTEGER(rand * mult_1), tamanho);
             wait for 10 ns;
         end loop;
 
@@ -121,16 +123,22 @@ begin
             for i in 0 to n_elementos - 1 loop
 
                 for j in 0 to n_caracteristicas - 1 loop
-                    write(file_line, i_valor(j), left, parte_inteira - parte_fracionaria + 1);
+                    write(file_line, i_valor(j)(tamanho - 1 downto tamanho - 1 - parte_inteira), left, parte_inteira);
+                    write(file_line, string'("."), left, 1);
+                    write(file_line, i_valor(j)(- parte_fracionaria downto 0), left, - parte_fracionaria);
                     write(file_line, string'(";"), left, 1);
                 end loop;
 
                 for j in 0 to n_caracteristicas - 1 loop
-                    write(file_line, i_elementos(i, j), left, parte_inteira - parte_fracionaria + 1);
+                    write(file_line, i_elementos(i, j)(tamanho - 1 downto tamanho - 1 - parte_inteira), left, parte_inteira);
+                    write(file_line, string'("."), left, 1);
+                    write(file_line, i_elementos(i, j)(- parte_fracionaria downto 0), left, - parte_fracionaria);
                     write(file_line, string'(";"), left, 1);
                 end loop;
-
-                write(file_line, o_resultado(i), left, parte_inteira - parte_fracionaria + 1);
+                
+                write(file_line, o_resultado(i)(tamanho - 1 downto tamanho - 1 - parte_inteira), left, parte_inteira);
+                write(file_line, string'("."), left, 1);
+                write(file_line, o_resultado(i)(- parte_fracionaria downto 0), left, - parte_fracionaria);
                 writeline(fptr, file_line);
             end loop;
         end if;

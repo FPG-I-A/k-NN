@@ -1,5 +1,6 @@
 library ieee;
-use ieee.fixed_pkg.all;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 library work;
 use work.pacote_aux.all;
@@ -47,7 +48,7 @@ begin
             menores <= i_min_x;
 
             -- Reinicia saída
-            resultado <= (others=>to_sfixed(0, resultado(0)));
+            resultado <= (others=>resize(s_fixo_zero, resultado(0)));
 
 
         end if;

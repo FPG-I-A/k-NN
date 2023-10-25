@@ -1,22 +1,14 @@
-import os
+from math import modf
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
-import requests
 from sklearn.model_selection import train_test_split
 
 
 def recebe_dados(seed, tamanho_teste):
     # Baixa conjunto de dados e salva dados crus
-    dir = Path('..', 'Dados')
-    dir.mkdir(exist_ok=True)
-    dados_crus = dir / 'iris.csv'
-    response = requests.get(
-        'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data'
-    )
-    with open(dados_crus, mode='wb') as f:
-        f.write(response.content)
+    dados_crus = Path('..', 'Dados', 'iris.csv')
 
     # Carrega conjuntos de dados
     x = np.loadtxt(dados_crus, delimiter=',', usecols=[0, 1, 2, 3])
@@ -39,17 +31,17 @@ def recebe_dados(seed, tamanho_teste):
     y = np.array(y)
 
     # Separa conjunto de treino e teste e calcula resultados
-    separados = train_test_split(
+    dados = train_test_split(
         x, y, test_size=tamanho_teste, random_state=seed
     )
-    return separados
+    return dados
 
 
 def cria_cabecalho(arquivo):
     linhas = [
         'library ieee;\n',
-        'use ieee.fixed_pkg.all;\n',
-        'use ieee.std_logic_1164.all;\n\n',
+        'use ieee.std_logic_1164.all;\n',
+        'use ieee.numeric_std.all;\n\n',
         'package pacote_aux is\n\n',
     ]
     arquivo.writelines(linhas)
@@ -57,40 +49,23 @@ def cria_cabecalho(arquivo):
 
 def cria_costantes(arquivo, inteira, fracionaria):
     linhas = [
-        f'\t-- -------------------------- Definições de constantes --------------------------\n',
+        f'\t---------------------------- Definições de constantes --------------------------\n',
         f'\tconstant parte_inteira     : integer := {inteira};\n',
         f'\tconstant parte_fracionaria : integer := -{fracionaria};\n',
         f'\tconstant tamanho           : integer := parte_inteira - parte_fracionaria + 1;\n\n',
-        "\tconstant vec_zero      : std_logic_vector(tamanho - 1 downto 0) := (others => '0');\n",
-        "\tconstant vec_um        : std_logic_vector(tamanho - 1 downto 0) := (others => '1');\n",
-        "\tconstant vec_lsb       : std_logic_vector(tamanho - 1 downto 0) := (0 => '1', others => '0');\n",
-        "\tconstant vec_msb       : std_logic_vector(tamanho - 1 downto 0) := (tamanho - 1 => '1', others => '0');\n",
-        "\tconstant vec_msb_m_lsb : std_logic_vector(tamanho - 1 downto 0) := (tamanho - 1 => '0', others => '1');\n\n",
-        '\tconstant s_fixo_max  : sfixed(parte_inteira downto parte_fracionaria) := to_sfixed(vec_msb_m_lsb, parte_inteira, parte_fracionaria);\n',
-        '\tconstant s_fixo_min  : sfixed(parte_inteira downto parte_fracionaria) := to_sfixed(vec_msb, parte_inteira, parte_fracionaria);\n',
-        '\tconstant s_fixo_lsb  : sfixed(parte_inteira downto parte_fracionaria) := to_sfixed(vec_lsb, parte_inteira, parte_fracionaria);\n',
-        '\tconstant s_fixo_msb  : sfixed(parte_inteira downto parte_fracionaria) := to_sfixed(vec_msb, parte_inteira, parte_fracionaria);\n',
-        '\tconstant s_fixo_zero : sfixed(parte_inteira downto parte_fracionaria) := to_sfixed(vec_zero, parte_inteira, parte_fracionaria);\n\n',
-        '\tconstant u_fixo_min : ufixed(parte_inteira downto parte_fracionaria) := to_ufixed(vec_zero, parte_inteira, parte_fracionaria);\n',
-        '\tconstant u_fixo_max : ufixed(parte_inteira downto parte_fracionaria) := to_ufixed(vec_um, parte_inteira, parte_fracionaria);\n',
-        '\tconstant u_fixo_lsb : ufixed(parte_inteira downto parte_fracionaria) := to_ufixed(vec_lsb, parte_inteira, parte_fracionaria);\n',
-        '\tconstant u_fixo_msb : ufixed(parte_inteira downto parte_fracionaria) := to_ufixed(vec_msb, parte_inteira, parte_fracionaria);\n\n',
-    ]
-    arquivo.writelines(linhas)
-
-
-def cria_tipos(arquivo):
-    linhas = [
         '\t-- ----------------------------- Definições de tipos ----------------------------\n',
-        '\tsubtype s_fixo is sfixed(parte_inteira downto parte_fracionaria);\n'
-        '\tsubtype u_fixo is ufixed(parte_inteira downto parte_fracionaria);\n\n'
+        '\tsubtype s_fixo is signed(tamanho - 1 downto 0);\n'
         '\ttype vec_s_fixo is array (integer range <>) of s_fixo;\n'
-        '\ttype vec_u_fixo is array (integer range <>) of u_fixo;\n'
-        '\ttype vec_inteiro is array (integer range <>) of integer;\n\n'
-        '\ttype mat_s_fixo is array(integer range <>, integer range<>) of s_fixo;\n'
-        '\ttype mat_u_fixo is array(integer range <>, integer range<>) of u_fixo;\n\n',
+        '\ttype vec_inteiro is array (integer range <>) of integer;\n'
+        '\ttype mat_s_fixo is array(integer range <>, integer range<>) of s_fixo;\n\n'
+        '\tconstant s_fixo_max : s_fixo := (tamanho - 1 => \'0\', others => \'1\');\n',
+        '\tconstant s_fixo_min : s_fixo := (tamanho - 1 => \'1\', others => \'0\');\n',
+        '\tconstant s_fixo_lsb : s_fixo := (0 => \'1\', others => \'0\');\n',
+        '\tconstant s_fixo_msb : s_fixo := s_fixo_min;\n',
+        '\tconstant s_fixo_zero : s_fixo := (others => \'0\');\n\n',
     ]
     arquivo.writelines(linhas)
+
 
 
 def escreve_vetor(
@@ -121,7 +96,7 @@ def escreve_vetor(
 
 
 def escreve_matriz(
-    arquivo, matriz, espacos, quantidade_linhas, elementos_por_linha
+    arquivo, matriz, espacos, quantidade_linhas, elementos_por_linha, parte_inteira, parte_fracionaria
 ):
     linhas = []
     tamanho = len(str(quantidade_linhas))
@@ -132,12 +107,12 @@ def escreve_matriz(
             if id_elemento < elementos_por_linha:
                 string = (
                     string
-                    + f'{id_elemento} => to_sfixed({elemento}, parte_inteira, parte_fracionaria), '
+                    + f'{id_elemento} => "{float_para_fixo(elemento, parte_inteira, parte_fracionaria)}", '
                 )
             else:
                 string = (
                     string
-                    + f'{id_elemento} => to_sfixed({elemento}, parte_inteira, parte_fracionaria))'
+                    + f'{id_elemento} => "{float_para_fixo(elemento, parte_inteira, parte_fracionaria)}")'
                 )
 
         if id_linha < quantidade_linhas:
@@ -150,7 +125,7 @@ def escreve_matriz(
     arquivo.writelines(linhas)
 
 
-def cria_dataset(arquivo, nome, dados, amostras_treino, amostras_teste):
+def cria_dataset(arquivo, nome, dados, amostras_treino, amostras_teste, parte_inteira, parte_fracionaria):
     arquivo.writelines(
         [
             f'\t-- ---------------------------------- {nome} ----------------------------------\n'
@@ -173,6 +148,8 @@ def cria_dataset(arquivo, nome, dados, amostras_treino, amostras_teste):
             espacos,
             dados.shape[0] - 1,
             quantidade_caracteristicas,
+            parte_inteira, 
+            parte_fracionaria
         )
     else:
         quantidade = dados.shape[0] - 1
@@ -186,6 +163,52 @@ def cria_dataset(arquivo, nome, dados, amostras_treino, amostras_teste):
         escreve_vetor(arquivo, dados, espacos, quantidade, 4)
         arquivo.writelines(['\t);\n\n'])
 
+def float_para_fixo(numero, parte_inteira, parte_fracionaria):
+    if numero >= 2 ** parte_inteira:
+        return '0' + '1' * (parte_inteira + parte_fracionaria)
+
+    n_frac, n_intei = modf(abs(numero) )
+    inteira = []
+    while n_intei >= 1:
+        # print(n_intei, inteira, n_intei % 2)
+        inteira.insert(0, str(int(n_intei % 2)))
+        n_intei //= 2
+        
+
+    fracionaria = []
+    for i in range(parte_fracionaria):
+        if (valor_bit := 2 ** (-i - 1)) <= n_frac:
+            n_frac -= valor_bit
+            fracionaria.append('1')
+        else:
+            fracionaria.append('0')
+        if n_frac == 0:
+            break
+    
+    while len(inteira) < parte_inteira:
+        inteira.insert(0, '0')
+    
+    while len(fracionaria) < parte_fracionaria:
+        fracionaria.append('0')
+    if numero >= 0:
+        return '0' + ''.join(inteira) + ''.join(fracionaria)
+    else:
+        comp_um = '1' + ''.join(['0' if bit == '1' else '1' for bit in inteira])  + ''.join(['0' if bit == '1' else '1' for bit in fracionaria])
+        carry = '1'
+        comp_dois = []
+        for bit in comp_um[::-1]:
+            if bit == '1' and carry == '1':
+                comp_dois.insert(0, '0')
+                carry = '1'
+            elif bit == '1' or carry =='1':
+                comp_dois.insert(0, '1')
+                carry = '0'
+            else:
+                comp_dois.insert(0, '0')
+                carry = '0'
+        return ''.join(comp_dois)
+
+
 
 def gera(parte_inteira, parte_fracionaria, seed=42, tamanho_teste=0.33):
     dados = recebe_dados(seed, tamanho_teste)
@@ -194,7 +217,6 @@ def gera(parte_inteira, parte_fracionaria, seed=42, tamanho_teste=0.33):
     with open('pacote_aux.vhdl', mode='w') as arquivo:
         cria_cabecalho(arquivo)
         cria_costantes(arquivo, parte_inteira, parte_fracionaria)
-        cria_tipos(arquivo)
 
         amostras_treino = dados[0].shape[0]
         amostras_teste = dados[1].shape[0]
@@ -203,13 +225,35 @@ def gera(parte_inteira, parte_fracionaria, seed=42, tamanho_teste=0.33):
 
         linhas = [
             f'\t-- ---------------------------------- Dataset ----------------------------------\n',
-            f'\t constant amostras_treino   : integer := {amostras_treino};\n'
-            f'\t constant amostras_teste    : integer := {amostras_teste};\n'
-            f'\t constant n_classes         : integer := {n_classes};\n'
-            f'\t constant n_caracteristicas : integer := {n_caracteristicas};\n\n',
+            f'\tconstant amostras_treino   : integer := {amostras_treino};\n'
+            f'\tconstant amostras_teste    : integer := {amostras_teste};\n'
+            f'\tconstant n_classes         : integer := {n_classes};\n'
+            f'\tconstant n_caracteristicas : integer := {n_caracteristicas};\n\n',
         ]
+        
+        linha = f'\tconstant maior_por_caracteristica : vec_s_fixo({n_caracteristicas} - 1 downto 0) := ('
+        for i in range(dados[0].shape[1]):
+            linha = linha + f'{i}=>"{float_para_fixo(np.max(dados[0][:,i]), parte_inteira, parte_fracionaria)}", '
+        linha =  linha[:-2] + ');\n'
+        linhas.append(linha)
+        
+        linha = f'\tconstant menor_por_caracteristica : vec_s_fixo({n_caracteristicas} - 1 downto 0) := ('
+        for i in range(dados[0].shape[1]):
+            linha = linha + f'{i}=>"{float_para_fixo(np.min(dados[0][:,i]), parte_inteira, parte_fracionaria)}", '
+        linha =  linha[:-2] + ');\n\n'
+        linhas.append(linha)
+
         arquivo.writelines(linhas)
+
+        x_treino = dados[0]
+        for i in range(x_treino.shape[1]):
+            x_treino[:,i] = (x_treino[:,i] - np.min(x_treino[:,i])) / (np.max(x_treino[:,i]) - np.min(x_treino[:,i]))
         for nome, dado in zip(nomes, dados):
-            cria_dataset(arquivo, nome, dado, amostras_treino, amostras_teste)
+            cria_dataset(arquivo, nome, dado, amostras_treino, amostras_teste, parte_inteira, parte_fracionaria)
 
         arquivo.writelines(['end package pacote_aux;\n'])
+
+
+if __name__ == '__main__':
+    gera(3, 14)
+    

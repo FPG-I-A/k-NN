@@ -1,5 +1,6 @@
 library ieee;
-use ieee.fixed_pkg.all;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 use std.env.finish;
 use ieee.math_real.all;
 
@@ -17,10 +18,14 @@ architecture sim of norm_tb is
     signal o_ocupado   : bit;
     signal i_x         : vec_s_fixo(n_caracteristicas - 1 downto 0);
     signal o_x_norm    : vec_s_fixo(n_caracteristicas - 1 downto 0);
+    signal random : real;
+    type vec_real is array (integer range <>) of real;
+    constant maior_por_caracteristica_interno : vec_real(4 - 1 downto 0) := (0=>7.6995117875, 1=>4.19995117875, 2=>2.5, 3=>4.2998046875);
+	constant menor_por_caracteristica_interno : vec_real(4 - 1 downto 0) := (0=>4.2998046875, 1=>2.0, 2=>1.099853515625, 3=>0.0998535156225);
+
 
     -- contador de ciclos de clock
     signal contador            : integer := 0;
-    signal conta_normalizacoes : integer := 0;
 
 
 begin
@@ -57,7 +62,8 @@ begin
         -- popula vetor de entradas
         for i in n_caracteristicas - 1 downto 0 loop
             uniform(seed1, seed2, rand);
-            i_x(i) <= resize(rand * maior_por_caracteristica(i) + menor_por_caracteristica(i), i_x(i)); -- quase sempre entre menor e maior
+            i_x(i) <= to_signed(INTEGER(rand * maior_por_caracteristica_interno(i)), tamanho);
+            -- i_x(i) <= resize(rand * maior_por_caracteristica(i) + menor_por_caracteristica(i), i_x(i)); -- quase sempre entre menor e maior
             wait for 10 ns;
         end loop;
 
