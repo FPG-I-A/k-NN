@@ -51,7 +51,7 @@ begin
 
             -- Atualiza distância do vetor atual
             if contador_caracteristica < gen_n_caracteristicas and contador_elemento < gen_n_amostras then
-                o_resultado(contador_elemento) <= resize(o_resultado(contador_elemento) + (valor(contador_caracteristica) - elementos(contador_elemento, contador_caracteristica)) * (valor(contador_caracteristica) - elementos(contador_elemento, contador_caracteristica)), o_resultado(contador_elemento));
+                o_resultado(contador_elemento) <= resize(o_resultado(contador_elemento) + (valor(contador_caracteristica) - elementos(contador_elemento, contador_caracteristica)), o_resultado(contador_elemento));
                 contador_caracteristica <= contador_caracteristica + 1;
 
             -- Passa para o próximo vetor
