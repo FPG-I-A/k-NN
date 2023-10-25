@@ -38,3 +38,4 @@ Cada módulo possuí uma sessão de mapeamento genérico e uma de mapeamento de 
 - [`moda`](modulos/moda/README.md)
 - [`norm`](modulos/norm/README.md)
 - [`sqrt`](modulos/sqrt/README.md)
+- [`knn`](modulos/knn/README.md)

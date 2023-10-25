@@ -1,22 +1,22 @@
 [*]
-[*] GTKWave Analyzer v3.3.114 (w)1999-2023 BSI
-[*] Wed May 24 12:57:35 2023
+[*] GTKWave Analyzer v3.3.115 (w)1999-2023 BSI
+[*] Fri Jun  9 11:36:08 2023
 [*]
-[dumpfile] "/home/luis.amorim/git/k-nn/resultados/norm/norm_tb.ghw"
-[dumpfile_mtime] "Wed May 24 12:56:33 2023"
-[dumpfile_size] 4408
-[savefile] "/home/luis.amorim/git/k-nn/gtkw/norm.gtkw"
+[dumpfile] "/home/luis.amorim/git/k-NN/resultados/norm/norm_tb.ghw"
+[dumpfile_mtime] "Fri Jun  9 11:36:06 2023"
+[dumpfile_size] 3236
+[savefile] "/home/luis.amorim/git/k-NN/gtkw/norm.gtkw"
 [timestart] 0
-[size] 1920 988
+[size] 1920 492
 [pos] 0 0
-*-30.900000 4036270000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-30.900000 2800000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.norm_tb.
 [treeopen] top.norm_tb.uut.
 [sst_width] 268
 [signals_width] 230
 [sst_expanded] 1
-[sst_vpaned_height] 293
+[sst_vpaned_height] 120
 @28
 top.norm_tb.i_clk
 top.norm_tb.i_init

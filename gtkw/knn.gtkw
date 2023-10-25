@@ -1,0 +1,29 @@
+[*]
+[*] GTKWave Analyzer v3.3.115 (w)1999-2023 BSI
+[*] Fri Jun  9 12:14:07 2023
+[*]
+[dumpfile] "/home/luis.amorim/git/k-NN/resultados/knn/knn_tb.ghw"
+[dumpfile_mtime] "Fri Jun  9 12:13:39 2023"
+[dumpfile_size] 918115
+[savefile] "/home/luis.amorim/git/k-NN/gtkw/knn.gtkw"
+[timestart] 0
+[size] 1920 988
+[pos] 0 0
+*-31.665043 349030000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.knn_tb.
+[treeopen] top.knn_tb.uut.
+[sst_width] 209
+[signals_width] 238
+[sst_expanded] 1
+[sst_vpaned_height] 360
+@28
+top.knn_tb.i_clk
+top.knn_tb.uut.i_init
+top.knn_tb.uut.o_ocupado
+@420
+top.knn_tb.contador
+@421
+top.knn_tb.o_resultado
+[pattern_trace] 1
+[pattern_trace] 0

@@ -83,6 +83,10 @@ begin
         wait for 1 us;
         i_init <= '0';
         wait for 500 us;
+        i_init <= '1';
+        wait for 1 us;
+        i_init <= '0';
+        wait for 500 us;
         finish;
     end process inicia;
 

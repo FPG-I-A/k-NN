@@ -247,7 +247,9 @@ def gera(parte_inteira, parte_fracionaria, seed=42, tamanho_teste=0.33):
 
         x_treino = dados[0]
         for i in range(x_treino.shape[1]):
-            x_treino[:,i] = (x_treino[:,i] - np.min(x_treino[:,i])) / (np.max(x_treino[:,i]) - np.min(x_treino[:,i]))
+            x_treino[:, i] = (x_treino[:, i] - np.min(x_treino[:, i])) / (
+                np.max(x_treino[:, i]) - np.min(x_treino[:, i])
+            )
         for nome, dado in zip(nomes, dados):
             cria_dataset(arquivo, nome, dado, amostras_treino, amostras_teste, parte_inteira, parte_fracionaria)
 

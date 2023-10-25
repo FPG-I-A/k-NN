@@ -1,14 +1,14 @@
 [*]
-[*] GTKWave Analyzer v3.3.114 (w)1999-2023 BSI
-[*] Mon May 22 15:03:09 2023
+[*] GTKWave Analyzer v3.3.115 (w)1999-2023 BSI
+[*] Fri Jun  9 11:36:05 2023
 [*]
-[dumpfile] "/home/luis/git/k-NN/resultados/moda/moda_tb.ghw"
-[dumpfile_mtime] "Mon May 22 15:03:04 2023"
+[dumpfile] "/home/luis.amorim/git/k-NN/resultados/moda/moda_tb.ghw"
+[dumpfile_mtime] "Fri Jun  9 11:36:04 2023"
 [dumpfile_size] 2073
-[savefile] "/home/luis/git/k-NN/gtkw/moda.gtkw"
+[savefile] "/home/luis.amorim/git/k-NN/gtkw/moda.gtkw"
 [timestart] 0
-[size] 1000 600
-[pos] -1 -1
+[size] 1920 492
+[pos] 0 0
 *-32.099998 5610000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.moda_tb.
@@ -16,7 +16,7 @@
 [sst_width] 209
 [signals_width] 182
 [sst_expanded] 1
-[sst_vpaned_height] 157
+[sst_vpaned_height] 120
 @28
 top.moda_tb.uut.i_clk
 top.moda_tb.uut.i_init
