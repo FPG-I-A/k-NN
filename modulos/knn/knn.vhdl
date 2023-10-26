@@ -25,18 +25,6 @@ end knn;
 
 architecture insercao of knn is
 
-    -- sinais do módulo de normalização
-    signal norm_init      : bit := '0';
-    signal norm_reset     : bit := '0';
-    signal norm_entrada   : vec_s_fixo(gen_n_caracteristicas - 1 downto 0);
-    signal norm_resultado : vec_s_fixo(gen_n_caracteristicas - 1 downto 0);
-    signal norm_ocupado   : bit;
-    signal norm_comecou   : bit                                            := '0';
-    signal norm_terminou  : bit                                            := '0';
-    signal finaliza_norm  : bit                                            := '0';
-    signal menores        : vec_s_fixo(gen_n_caracteristicas - 1 downto 0) := menor_por_caracteristica;
-    signal maiores        : vec_s_fixo(gen_n_caracteristicas - 1 downto 0) := maior_por_caracteristica;
-
     -- sinais do módulo de distancia
     signal dist_init      : bit := '0';
     signal dist_reset     : bit := '0';
@@ -77,21 +65,6 @@ architecture insercao of knn is
     signal infere  : vec_s_fixo(gen_n_caracteristicas - 1 downto 0);
 
 begin
-    normaliza : entity work.norm
-        generic map(
-            gen_n_caracteristicas => n_caracteristicas
-        )
-        port map(
-            i_clk     => i_clk,
-            i_init    => norm_init,
-            i_reset   => norm_reset,
-            i_x       => norm_entrada,
-            i_min_x   => menores,
-            i_max_x   => maiores,
-            o_x_norm  => norm_resultado,
-            o_ocupado => norm_ocupado
-        );
-
     distancias : entity work.distancias
         generic map(
             gen_n_amostras        => amostras_treino,
@@ -136,14 +109,6 @@ begin
             o_resultado => moda_resultado
         );
 
-    termina_norm : process (norm_ocupado, i_clk) begin
-        if falling_edge(norm_ocupado) then
-            finaliza_norm <= '1';
-        else
-            finaliza_norm <= '0';
-        end if;
-    end process termina_norm;
-
     termina_dist : process (dist_ocupado, i_clk) begin
         if falling_edge(dist_ocupado) then
             finaliza_dist <= '1';
@@ -183,33 +148,21 @@ begin
     calcula : process (i_clk) begin
         if iniciar = '1' then
             o_ocupado    <= '1';
-            norm_entrada <= infere;
+            dist_infere <= infere;
+            dist_treino <= i_x_treino;
         end if;
 
         if o_ocupado = '1' then
 
-            -- Módulo de normalização
-            if norm_terminou = '0' and norm_ocupado = '0' and norm_terminou = '0' and norm_comecou = '0' then
-                norm_init    <= '1';
-                norm_comecou <= '1';
-            elsif norm_terminou = '0' and norm_ocupado = '1' then
-                norm_init <= '0';
-            end if;
-            if finaliza_norm = '1' then
-                norm_terminou <= '1';
-                dist_infere   <= norm_resultado;
-                dist_treino   <= treino;
-            end if;
-
             -- Módulo de distancias
-            if finaliza_norm = '1'and dist_comecou = '0' then
+            if dist_terminou = '0' and dist_ocupado = '0' and dist_terminou = '0' and dist_comecou = '0' then
                 dist_init    <= '1';
                 dist_comecou <= '1';
             elsif dist_terminou = '0' and dist_ocupado = '1' then
                 dist_init <= '0';
             end if;
             if finaliza_dist = '1' then
-                dist_terminou  <= '1';
+                dist_terminou <= '1';
                 argmin_entrada <= dist_resultado;
             end if;
 
@@ -240,9 +193,6 @@ begin
                 o_ocupado <= '0';
 
                 -- Reset das variáveis de estado
-                norm_comecou <= '0';
-                norm_terminou <= '0';
-
                 dist_comecou    <= '0';
                 dist_terminou   <= '0';
 
