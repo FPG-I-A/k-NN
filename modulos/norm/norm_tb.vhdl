@@ -12,10 +12,10 @@ end norm_tb;
 architecture sim of norm_tb is
 
     -- portas do componente
-    signal i_clk       : bit := '0';
-    signal i_init      : bit := '0';
-    signal i_reset     : bit := '0';
-    signal o_ocupado   : bit;
+    signal i_clk       : std_logic := '0';
+    signal i_init      : std_logic := '0';
+    signal i_reset     : std_logic := '0';
+    signal o_ocupado   : std_logic;
     signal i_x         : vec_s_fixo(n_caracteristicas - 1 downto 0);
     signal o_x_norm    : vec_s_fixo(n_caracteristicas - 1 downto 0);
     signal random : real;
