@@ -87,4 +87,9 @@ begin
         if falling_edge(o_ocupado) and contador = max_val then terminou <= '1'; end if;
     end process;
 
+    -- process begin
+    --     wait for 1 ms;
+    --     finish;
+    -- end process;
+
 end architecture sim;
