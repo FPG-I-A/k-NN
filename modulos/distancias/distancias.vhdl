@@ -16,24 +16,24 @@ entity distancias is
         gen_n_caracteristicas : in integer
     );
     port (
-        i_clk       : in bit;
-        i_init      : in bit;
-        i_reset     : in bit;
+        i_clk       : in std_logic;
+        i_init      : in std_logic;
+        i_reset     : in std_logic;
         i_elementos : in mat_s_fixo(gen_n_amostras - 1 downto 0, gen_n_caracteristicas - 1 downto 0);
         i_valor     : in vec_s_fixo(gen_n_caracteristicas - 1 downto 0);
         o_resultado : out vec_s_fixo(gen_n_amostras - 1 downto 0);
         o_amostra   : out integer;
-        o_ocupado   : out bit
+        o_ocupado   : out std_logic
     );
 end distancias;
 architecture calcula of distancias is
-    signal iniciar                 : bit := '0';
-    signal finaliza                : bit := '0';
+    signal iniciar                 : std_logic := '0';
+    signal finaliza                : std_logic := '0';
     signal elementos               : mat_s_fixo(gen_n_amostras - 1 downto 0, gen_n_caracteristicas - 1 downto 0);
     signal valor                   : vec_s_fixo(gen_n_caracteristicas - 1 downto 0);
     signal contador_elemento       : integer range 0 to gen_n_amostras        := 0;
     signal contador_caracteristica : integer range 0 to gen_n_caracteristicas := 0;
-    signal ocupado : bit := '0';
+    signal ocupado : std_logic := '0';
     signal resultado : vec_s_fixo(gen_n_amostras - 1 downto 0);
 begin
 

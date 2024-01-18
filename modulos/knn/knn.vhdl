@@ -1,5 +1,6 @@
 library ieee;
 use ieee.fixed_pkg.all;
+use ieee.std_logic_1164.all;
 
 library work;
 use work.pacote_aux.all;
@@ -12,30 +13,30 @@ entity knn is
         gen_k                 : in integer -- valor k do algoritmo k-nn
     );
     port (
-        i_clk       : in bit;
-        i_init      : in bit;
-        i_reset     : in bit;
+        i_clk       : in std_logic;
+        i_init      : in std_logic;
+        i_reset     : in std_logic;
         i_x_treino  : in mat_s_fixo(gen_n_amostras - 1 downto 0, gen_n_caracteristicas - 1 downto 0);
         i_y_treino  : vec_inteiro(gen_n_amostras - 1 downto 0);
         i_infere    : in vec_s_fixo(gen_n_caracteristicas - 1 downto 0);
         o_resultado : out integer;
-        o_ocupado   : out bit
+        o_ocupado   : out std_logic := '0'
     );
 end knn;
 
 architecture insercao of knn is
 
     -- sinais do módulo de distancia
-    signal dist_init      : bit := '0';
-    signal dist_reset     : bit := '0';
+    signal dist_init      : std_logic := '0';
+    signal dist_reset     : std_logic := '0';
     signal dist_treino    : mat_s_fixo(gen_n_amostras - 1 downto 0, gen_n_caracteristicas - 1 downto 0);
     signal dist_infere    : vec_s_fixo(gen_n_caracteristicas - 1 downto 0);
     signal dist_resultado : vec_s_fixo(gen_n_amostras - 1 downto 0);
     signal dist_amostra   : integer;
-    signal dist_ocupado   : bit;
-    signal dist_comecou   : bit := '0';
-    signal dist_terminou  : bit := '0';
-    signal finaliza_dist  : bit := '0';
+    signal dist_ocupado   : std_logic;
+    signal dist_comecou   : std_logic := '0';
+    signal dist_terminou  : std_logic := '0';
+    signal finaliza_dist  : std_logic := '0';
 
     --sinais do módulo de argmin
     signal argmin_init      : bit := '0';
@@ -48,19 +49,19 @@ architecture insercao of knn is
     signal finaliza_argmin  : bit := '0';
 
     -- sinais do módulo de moda
-    signal moda_init      : bit := '0';
-    signal moda_reset     : bit := '0';
+    signal moda_init      : std_logic := '0';
+    signal moda_reset     : std_logic := '0';
     signal moda_entrada   : vec_inteiro(gen_k - 1 downto 0);
     signal moda_resultado : integer;
-    signal moda_ocupado   : bit;
-    signal moda_comecou   : bit     := '0';
+    signal moda_ocupado   : std_logic;
+    signal moda_comecou   : std_logic     := '0';
     signal contador_moda  : integer := 0;
-    signal moda_terminou  : bit     := '0';
-    signal finaliza_moda  : bit     := '0';
-    signal moda_iniciar   : bit     := '0';
+    signal moda_terminou  : std_logic     := '0';
+    signal finaliza_moda  : std_logic     := '0';
+    signal moda_iniciar   : std_logic     := '0';
 
     -- sinais do módulo de knn
-    signal iniciar : bit := '0';
+    signal iniciar : std_logic := '0';
     signal treino  : mat_s_fixo(gen_n_amostras - 1 downto 0, gen_n_caracteristicas - 1 downto 0);
     signal infere  : vec_s_fixo(gen_n_caracteristicas - 1 downto 0);
 

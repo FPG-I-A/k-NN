@@ -17,14 +17,14 @@ architecture sim of distancias_tb is
     constant mult_1 : real := 8192.0;
 
     -- portas do componente
-    signal i_clk       : bit := '0';
-    signal i_init      : bit := '0';
-    signal i_reset     : bit := '0';
+    signal i_clk       : std_logic := '0';
+    signal i_init      : std_logic := '0';
+    signal i_reset     : std_logic := '0';
     signal i_elementos : mat_s_fixo(n_elementos - 1 downto 0, n_caracteristicas - 1 downto 0);
     signal i_valor     : vec_s_fixo(n_caracteristicas - 1 downto 0);
     signal o_resultado : vec_s_fixo(n_elementos - 1 downto 0);
     signal o_amostra   : integer;
-    signal o_ocupado   : bit;
+    signal o_ocupado   : std_logic;
 
     -- contador de ciclos de clock
     signal contador : integer := 0;
@@ -145,6 +145,7 @@ begin
                 write(file_line, o_resultado(i)(- parte_fracionaria downto 0), left, - parte_fracionaria);
                 writeline(fptr, file_line);
             end loop;
+        finish;
         end if;
     end process gera_csv;
 

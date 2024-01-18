@@ -16,7 +16,7 @@ architecture sim of argmin_tb is
     constant mult_1 : real := 8192.0;
 
     -- portas do componente
-    signal i_clk       : bit := '0';
+    signal i_clk       : std_logic := '0';
     signal i_init      : bit := '0';
     signal i_reset     : bit := '0';
     signal o_ocupado   : bit;

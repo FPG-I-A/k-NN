@@ -1,3 +1,6 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
 library work;
 use work.pacote_aux.all;
 
@@ -7,23 +10,23 @@ entity moda is
         gen_n_classes   : integer := 3  -- n de classes no dataset treino
     );
     port (
-        i_clk       : in bit;
-        i_init      : in bit;
-        i_reset     : in bit;
+        i_clk       : in std_logic;
+        i_init      : in std_logic;
+        i_reset     : in std_logic;
         i_vec       : in vec_inteiro(gen_n_elementos - 1 downto 0);
-        o_ocupado   : out bit;
+        o_ocupado   : out std_logic;
         o_resultado : out integer
     );
 end moda;
 
 architecture conta of moda is
-    signal iniciar          : bit := '0';
+    signal iniciar          : std_logic := '0';
     signal classes          : vec_inteiro(gen_n_elementos - 1 downto 0); -- entrada
     signal contador_classes : vec_inteiro(gen_n_classes - 1 downto 0) := (others => 0);
     signal contador         : integer;
-    signal contar           : bit     := '0';
+    signal contar           : std_logic     := '0';
     signal maior            : integer := 0;
-    signal ocupado : bit := '0';
+    signal ocupado : std_logic := '0';
 begin
 
     calcula : process (i_clk) begin

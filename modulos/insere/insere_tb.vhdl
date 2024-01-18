@@ -1,5 +1,6 @@
 library ieee;
 use std.env.finish;
+use ieee.std_logic_1164.all;
 
 library work;
 use work.pacote_aux.all;
@@ -14,10 +15,10 @@ architecture sim of insere_tb is
     constant max_val     : integer := 25;
 
     -- portas do componente
-    signal i_clk       : bit := '0';
-    signal i_init      : bit := '0';
-    signal i_reset     : bit := '0';
-    signal o_ocupado   : bit;
+    signal i_clk       : std_logic := '0';
+    signal i_init      : std_logic := '0';
+    signal i_reset     : std_logic := '0';
+    signal o_ocupado   : std_logic;
     signal i_elementos : vec_inteiro(n_elementos - 1 downto 0) := (
         0 => 0,
         1 => 0,
@@ -33,7 +34,7 @@ architecture sim of insere_tb is
     signal i_indice : integer := 9;
     signal i_valor  : integer := 0;
     signal o_resultado : vec_inteiro(n_elementos - 1 downto 0);
-    signal terminou : bit := '0';
+    signal terminou : std_logic := '0';
 
 
     signal contador : integer := 0;
@@ -75,7 +76,7 @@ begin
                 i_init <= '1';
                 contador <= contador + 1;
                 if contador > 0 then i_elementos <= o_resultado; end if;
-                i_indice <= (i_indice + 1) mod (n_elementos);
+                -- i_indice <= (i_indice + 1) mod (n_elementos);
                 i_valor <= i_valor + 1;
             else
                 i_init <= '0';
@@ -86,10 +87,5 @@ begin
     process(o_ocupado) begin
         if falling_edge(o_ocupado) and contador = max_val then terminou <= '1'; end if;
     end process;
-
-    -- process begin
-    --     wait for 1 ms;
-    --     finish;
-    -- end process;
 
 end architecture sim;

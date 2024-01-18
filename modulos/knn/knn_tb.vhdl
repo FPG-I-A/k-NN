@@ -1,6 +1,7 @@
 library ieee;
 use ieee.fixed_pkg.all;
 use std.textio.all;
+use ieee.std_logic_1164.all;
 use std.env.finish;
 
 library work;
@@ -11,10 +12,10 @@ end knn_tb;
 architecture sim of knn_tb is
 
     -- portas do componente
-    signal i_clk       : bit := '0';
-    signal i_init      : bit := '0';
-    signal i_reset     : bit := '0';
-    signal o_ocupado   : bit;
+    signal i_clk       : std_logic := '0';
+    signal i_init      : std_logic := '0';
+    signal i_reset     : std_logic := '0';
+    signal o_ocupado   : std_logic;
     signal i_infere    : vec_s_fixo(n_caracteristicas - 1 downto 0);
     signal o_resultado : integer;
 

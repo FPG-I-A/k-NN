@@ -1,3 +1,6 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
 library work;
 use work.pacote_aux.all;
 
@@ -6,25 +9,25 @@ entity insere is
         gen_n_elementos : in integer := 2 -- quantidade de elementos no vetor de entradas
     );
     port (
-        i_clk       : in bit;
-        i_init      : in bit;
-        i_reset     : in bit;
+        i_clk       : in std_logic;
+        i_init      : in std_logic;
+        i_reset     : in std_logic;
         i_elementos : in vec_inteiro(gen_n_elementos - 1 downto 0);
         i_valor     : in integer;
         i_indice    : in integer;
         o_resultado : out vec_inteiro(gen_n_elementos - 1 downto 0);
-        o_ocupado   : out bit
+        o_ocupado   : out std_logic
     );
 end insere;
 
 architecture shift of insere is
-    signal iniciar      : bit := '0';
-    signal finaliza     : bit := '0';
+    signal iniciar      : std_logic := '0';
+    signal finaliza     : std_logic := '0';
     signal elementos    : vec_inteiro(gen_n_elementos - 1 downto 0);
     signal valor        : integer;
     signal indice       : integer;
     signal indice_atual : integer := 0;
-    signal ocupado     : bit := '0';
+    signal ocupado     : std_logic := '0';
 
 begin
 
@@ -38,7 +41,7 @@ begin
         end if;
 
         if ocupado = '1' and finaliza = '0'then
-            if indice_atual < indice - 1 then
+            if indice_atual < indice then
                 elementos(indice_atual) <= elementos(indice_atual + 1);
                 indice_atual            <= indice_atual + 1;
             else

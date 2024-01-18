@@ -16,7 +16,7 @@ entity argmin is
         gen_k           : in integer := 3 -- quantidade de índices do maior
     );
     port (
-        i_clk       : in bit;
+        i_clk       : in std_logic;
         i_init      : in bit;
         i_reset     : in bit;
         i_elementos : in vec_s_fixo(gen_n_elementos - 1 downto 0);
@@ -29,7 +29,7 @@ architecture insercao of argmin is
     signal iniciar         : bit := '0';
     signal finaliza        : bit := '0';
     signal deve_inserir    : bit := '0';
-    signal inicia_insercao : bit := '0';
+    signal inicia_insercao : std_logic := '0';
     signal inserindo       : bit := '0';
     signal elementos       : vec_s_fixo(gen_n_elementos - 1 downto 0);                       -- vetor de entradas
     signal indices         : vec_inteiro(gen_k downto 0) := (others => gen_n_elementos - 1); -- resultado
@@ -38,8 +38,8 @@ architecture insercao of argmin is
     signal ocupado : bit := '0';
 
     -- Sinais do insersor
-    signal reset_insere     : bit := '0';
-    signal insere_ocupado   : bit;
+    signal reset_insere     : std_logic := '0';
+    signal insere_ocupado   : std_logic;
     signal resultado_insere : vec_inteiro(gen_k downto 0);
 begin
 
