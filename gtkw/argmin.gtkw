@@ -1,50 +1,50 @@
 [*]
 [*] GTKWave Analyzer v3.3.115 (w)1999-2023 BSI
-[*] Fri Jun  9 11:36:11 2023
+[*] Tue Jan 16 21:16:44 2024
 [*]
-[dumpfile] "/home/luis.amorim/git/k-NN/resultados/argmin/argmin_tb.ghw"
-[dumpfile_mtime] "Fri Jun  9 11:36:09 2023"
-[dumpfile_size] 4358
-[savefile] "/home/luis.amorim/git/k-NN/gtkw/argmin.gtkw"
+[dumpfile] "C:\Users\luiso\Documents\GitHub\k-NN\resultados\argmin\argmin_tb.ghw"
+[dumpfile_mtime] "Tue Jan 16 21:15:16 2024"
+[dumpfile_size] 4638
+[savefile] "C:\Users\luiso\Documents\GitHub\k-NN\gtkw\argmin.gtkw"
 [timestart] 0
-[size] 1920 492
-[pos] 0 0
-*-33.243931 17750000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1920 1027
+[pos] -1 -1
+*-30.243931 1112000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.argmin_tb.
+[treeopen] top.argmin_tb.uut.
 [sst_width] 209
 [signals_width] 280
 [sst_expanded] 1
-[sst_vpaned_height] 119
+[sst_vpaned_height] 314
 @28
 top.argmin_tb.i_clk
-top.argmin_tb.uut.iniciar
-top.argmin_tb.uut.finaliza
 top.argmin_tb.uut.o_ocupado
-@421
-top.argmin_tb.o_indices[0]
-top.argmin_tb.o_indices[1]
-top.argmin_tb.o_indices[2]
+top.argmin_tb.uut.i_init
 @40000420
-[fpshift_count] 14
-#{top.argmin_tb.uut.elementos[0][1:-14]} top.argmin_tb.uut.elementos[0][1] top.argmin_tb.uut.elementos[0][0] top.argmin_tb.uut.elementos[0][-1] top.argmin_tb.uut.elementos[0][-2] top.argmin_tb.uut.elementos[0][-3] top.argmin_tb.uut.elementos[0][-4] top.argmin_tb.uut.elementos[0][-5] top.argmin_tb.uut.elementos[0][-6] top.argmin_tb.uut.elementos[0][-7] top.argmin_tb.uut.elementos[0][-8] top.argmin_tb.uut.elementos[0][-9] top.argmin_tb.uut.elementos[0][-10] top.argmin_tb.uut.elementos[0][-11] top.argmin_tb.uut.elementos[0][-12]
-[fpshift_count] 14
-#{top.argmin_tb.uut.elementos[1][1:-14]} top.argmin_tb.uut.elementos[1][1] top.argmin_tb.uut.elementos[1][0] top.argmin_tb.uut.elementos[1][-1] top.argmin_tb.uut.elementos[1][-2] top.argmin_tb.uut.elementos[1][-3] top.argmin_tb.uut.elementos[1][-4] top.argmin_tb.uut.elementos[1][-5] top.argmin_tb.uut.elementos[1][-6] top.argmin_tb.uut.elementos[1][-7] top.argmin_tb.uut.elementos[1][-8] top.argmin_tb.uut.elementos[1][-9] top.argmin_tb.uut.elementos[1][-10] top.argmin_tb.uut.elementos[1][-11] top.argmin_tb.uut.elementos[1][-12]
-[fpshift_count] 14
-#{top.argmin_tb.uut.elementos[2][1:-14]} top.argmin_tb.uut.elementos[2][1] top.argmin_tb.uut.elementos[2][0] top.argmin_tb.uut.elementos[2][-1] top.argmin_tb.uut.elementos[2][-2] top.argmin_tb.uut.elementos[2][-3] top.argmin_tb.uut.elementos[2][-4] top.argmin_tb.uut.elementos[2][-5] top.argmin_tb.uut.elementos[2][-6] top.argmin_tb.uut.elementos[2][-7] top.argmin_tb.uut.elementos[2][-8] top.argmin_tb.uut.elementos[2][-9] top.argmin_tb.uut.elementos[2][-10] top.argmin_tb.uut.elementos[2][-11] top.argmin_tb.uut.elementos[2][-12]
-[fpshift_count] 14
-#{top.argmin_tb.uut.elementos[3][1:-14]} top.argmin_tb.uut.elementos[3][1] top.argmin_tb.uut.elementos[3][0] top.argmin_tb.uut.elementos[3][-1] top.argmin_tb.uut.elementos[3][-2] top.argmin_tb.uut.elementos[3][-3] top.argmin_tb.uut.elementos[3][-4] top.argmin_tb.uut.elementos[3][-5] top.argmin_tb.uut.elementos[3][-6] top.argmin_tb.uut.elementos[3][-7] top.argmin_tb.uut.elementos[3][-8] top.argmin_tb.uut.elementos[3][-9] top.argmin_tb.uut.elementos[3][-10] top.argmin_tb.uut.elementos[3][-11] top.argmin_tb.uut.elementos[3][-12]
-[fpshift_count] 14
-#{top.argmin_tb.uut.elementos[4][1:-14]} top.argmin_tb.uut.elementos[4][1] top.argmin_tb.uut.elementos[4][0] top.argmin_tb.uut.elementos[4][-1] top.argmin_tb.uut.elementos[4][-2] top.argmin_tb.uut.elementos[4][-3] top.argmin_tb.uut.elementos[4][-4] top.argmin_tb.uut.elementos[4][-5] top.argmin_tb.uut.elementos[4][-6] top.argmin_tb.uut.elementos[4][-7] top.argmin_tb.uut.elementos[4][-8] top.argmin_tb.uut.elementos[4][-9] top.argmin_tb.uut.elementos[4][-10] top.argmin_tb.uut.elementos[4][-11] top.argmin_tb.uut.elementos[4][-12]
-[fpshift_count] 14
-#{top.argmin_tb.uut.elementos[5][1:-14]} top.argmin_tb.uut.elementos[5][1] top.argmin_tb.uut.elementos[5][0] top.argmin_tb.uut.elementos[5][-1] top.argmin_tb.uut.elementos[5][-2] top.argmin_tb.uut.elementos[5][-3] top.argmin_tb.uut.elementos[5][-4] top.argmin_tb.uut.elementos[5][-5] top.argmin_tb.uut.elementos[5][-6] top.argmin_tb.uut.elementos[5][-7] top.argmin_tb.uut.elementos[5][-8] top.argmin_tb.uut.elementos[5][-9] top.argmin_tb.uut.elementos[5][-10] top.argmin_tb.uut.elementos[5][-11] top.argmin_tb.uut.elementos[5][-12]
-[fpshift_count] 14
-#{top.argmin_tb.uut.elementos[6][1:-14]} top.argmin_tb.uut.elementos[6][1] top.argmin_tb.uut.elementos[6][0] top.argmin_tb.uut.elementos[6][-1] top.argmin_tb.uut.elementos[6][-2] top.argmin_tb.uut.elementos[6][-3] top.argmin_tb.uut.elementos[6][-4] top.argmin_tb.uut.elementos[6][-5] top.argmin_tb.uut.elementos[6][-6] top.argmin_tb.uut.elementos[6][-7] top.argmin_tb.uut.elementos[6][-8] top.argmin_tb.uut.elementos[6][-9] top.argmin_tb.uut.elementos[6][-10] top.argmin_tb.uut.elementos[6][-11] top.argmin_tb.uut.elementos[6][-12]
-[fpshift_count] 14
-#{top.argmin_tb.uut.elementos[7][1:-14]} top.argmin_tb.uut.elementos[7][1] top.argmin_tb.uut.elementos[7][0] top.argmin_tb.uut.elementos[7][-1] top.argmin_tb.uut.elementos[7][-2] top.argmin_tb.uut.elementos[7][-3] top.argmin_tb.uut.elementos[7][-4] top.argmin_tb.uut.elementos[7][-5] top.argmin_tb.uut.elementos[7][-6] top.argmin_tb.uut.elementos[7][-7] top.argmin_tb.uut.elementos[7][-8] top.argmin_tb.uut.elementos[7][-9] top.argmin_tb.uut.elementos[7][-10] top.argmin_tb.uut.elementos[7][-11] top.argmin_tb.uut.elementos[7][-12]
-[fpshift_count] 14
-#{top.argmin_tb.uut.elementos[8][1:-14]} top.argmin_tb.uut.elementos[8][1] top.argmin_tb.uut.elementos[8][0] top.argmin_tb.uut.elementos[8][-1] top.argmin_tb.uut.elementos[8][-2] top.argmin_tb.uut.elementos[8][-3] top.argmin_tb.uut.elementos[8][-4] top.argmin_tb.uut.elementos[8][-5] top.argmin_tb.uut.elementos[8][-6] top.argmin_tb.uut.elementos[8][-7] top.argmin_tb.uut.elementos[8][-8] top.argmin_tb.uut.elementos[8][-9] top.argmin_tb.uut.elementos[8][-10] top.argmin_tb.uut.elementos[8][-11] top.argmin_tb.uut.elementos[8][-12]
-[fpshift_count] 14
-#{top.argmin_tb.uut.elementos[9][1:-14]} top.argmin_tb.uut.elementos[9][1] top.argmin_tb.uut.elementos[9][0] top.argmin_tb.uut.elementos[9][-1] top.argmin_tb.uut.elementos[9][-2] top.argmin_tb.uut.elementos[9][-3] top.argmin_tb.uut.elementos[9][-4] top.argmin_tb.uut.elementos[9][-5] top.argmin_tb.uut.elementos[9][-6] top.argmin_tb.uut.elementos[9][-7] top.argmin_tb.uut.elementos[9][-8] top.argmin_tb.uut.elementos[9][-9] top.argmin_tb.uut.elementos[9][-10] top.argmin_tb.uut.elementos[9][-11] top.argmin_tb.uut.elementos[9][-12]
+[fpshift_count] 12
+#{top.argmin_tb.uut.elementos[0][15:0]} top.argmin_tb.uut.elementos[0][15] top.argmin_tb.uut.elementos[0][14] top.argmin_tb.uut.elementos[0][13] top.argmin_tb.uut.elementos[0][12] top.argmin_tb.uut.elementos[0][11] top.argmin_tb.uut.elementos[0][10] top.argmin_tb.uut.elementos[0][9] top.argmin_tb.uut.elementos[0][8] top.argmin_tb.uut.elementos[0][7] top.argmin_tb.uut.elementos[0][6] top.argmin_tb.uut.elementos[0][5] top.argmin_tb.uut.elementos[0][4] top.argmin_tb.uut.elementos[0][3] top.argmin_tb.uut.elementos[0][2] top.argmin_tb.uut.elementos[0][1] top.argmin_tb.uut.elementos[0][0]
+[fpshift_count] 12
+#{top.argmin_tb.uut.elementos[1][15:0]} top.argmin_tb.uut.elementos[1][15] top.argmin_tb.uut.elementos[1][14] top.argmin_tb.uut.elementos[1][13] top.argmin_tb.uut.elementos[1][12] top.argmin_tb.uut.elementos[1][11] top.argmin_tb.uut.elementos[1][10] top.argmin_tb.uut.elementos[1][9] top.argmin_tb.uut.elementos[1][8] top.argmin_tb.uut.elementos[1][7] top.argmin_tb.uut.elementos[1][6] top.argmin_tb.uut.elementos[1][5] top.argmin_tb.uut.elementos[1][4] top.argmin_tb.uut.elementos[1][3] top.argmin_tb.uut.elementos[1][2] top.argmin_tb.uut.elementos[1][1] top.argmin_tb.uut.elementos[1][0]
+[fpshift_count] 12
+#{top.argmin_tb.uut.elementos[2][15:0]} top.argmin_tb.uut.elementos[2][15] top.argmin_tb.uut.elementos[2][14] top.argmin_tb.uut.elementos[2][13] top.argmin_tb.uut.elementos[2][12] top.argmin_tb.uut.elementos[2][11] top.argmin_tb.uut.elementos[2][10] top.argmin_tb.uut.elementos[2][9] top.argmin_tb.uut.elementos[2][8] top.argmin_tb.uut.elementos[2][7] top.argmin_tb.uut.elementos[2][6] top.argmin_tb.uut.elementos[2][5] top.argmin_tb.uut.elementos[2][4] top.argmin_tb.uut.elementos[2][3] top.argmin_tb.uut.elementos[2][2] top.argmin_tb.uut.elementos[2][1] top.argmin_tb.uut.elementos[2][0]
+[fpshift_count] 12
+#{top.argmin_tb.uut.elementos[3][15:0]} top.argmin_tb.uut.elementos[3][15] top.argmin_tb.uut.elementos[3][14] top.argmin_tb.uut.elementos[3][13] top.argmin_tb.uut.elementos[3][12] top.argmin_tb.uut.elementos[3][11] top.argmin_tb.uut.elementos[3][10] top.argmin_tb.uut.elementos[3][9] top.argmin_tb.uut.elementos[3][8] top.argmin_tb.uut.elementos[3][7] top.argmin_tb.uut.elementos[3][6] top.argmin_tb.uut.elementos[3][5] top.argmin_tb.uut.elementos[3][4] top.argmin_tb.uut.elementos[3][3] top.argmin_tb.uut.elementos[3][2] top.argmin_tb.uut.elementos[3][1] top.argmin_tb.uut.elementos[3][0]
+[fpshift_count] 12
+#{top.argmin_tb.uut.elementos[4][15:0]} top.argmin_tb.uut.elementos[4][15] top.argmin_tb.uut.elementos[4][14] top.argmin_tb.uut.elementos[4][13] top.argmin_tb.uut.elementos[4][12] top.argmin_tb.uut.elementos[4][11] top.argmin_tb.uut.elementos[4][10] top.argmin_tb.uut.elementos[4][9] top.argmin_tb.uut.elementos[4][8] top.argmin_tb.uut.elementos[4][7] top.argmin_tb.uut.elementos[4][6] top.argmin_tb.uut.elementos[4][5] top.argmin_tb.uut.elementos[4][4] top.argmin_tb.uut.elementos[4][3] top.argmin_tb.uut.elementos[4][2] top.argmin_tb.uut.elementos[4][1] top.argmin_tb.uut.elementos[4][0]
+[fpshift_count] 12
+#{top.argmin_tb.uut.elementos[5][15:0]} top.argmin_tb.uut.elementos[5][15] top.argmin_tb.uut.elementos[5][14] top.argmin_tb.uut.elementos[5][13] top.argmin_tb.uut.elementos[5][12] top.argmin_tb.uut.elementos[5][11] top.argmin_tb.uut.elementos[5][10] top.argmin_tb.uut.elementos[5][9] top.argmin_tb.uut.elementos[5][8] top.argmin_tb.uut.elementos[5][7] top.argmin_tb.uut.elementos[5][6] top.argmin_tb.uut.elementos[5][5] top.argmin_tb.uut.elementos[5][4] top.argmin_tb.uut.elementos[5][3] top.argmin_tb.uut.elementos[5][2] top.argmin_tb.uut.elementos[5][1] top.argmin_tb.uut.elementos[5][0]
+[fpshift_count] 12
+#{top.argmin_tb.uut.elementos[6][15:0]} top.argmin_tb.uut.elementos[6][15] top.argmin_tb.uut.elementos[6][14] top.argmin_tb.uut.elementos[6][13] top.argmin_tb.uut.elementos[6][12] top.argmin_tb.uut.elementos[6][11] top.argmin_tb.uut.elementos[6][10] top.argmin_tb.uut.elementos[6][9] top.argmin_tb.uut.elementos[6][8] top.argmin_tb.uut.elementos[6][7] top.argmin_tb.uut.elementos[6][6] top.argmin_tb.uut.elementos[6][5] top.argmin_tb.uut.elementos[6][4] top.argmin_tb.uut.elementos[6][3] top.argmin_tb.uut.elementos[6][2] top.argmin_tb.uut.elementos[6][1] top.argmin_tb.uut.elementos[6][0]
+[fpshift_count] 12
+#{top.argmin_tb.uut.elementos[7][15:0]} top.argmin_tb.uut.elementos[7][15] top.argmin_tb.uut.elementos[7][14] top.argmin_tb.uut.elementos[7][13] top.argmin_tb.uut.elementos[7][12] top.argmin_tb.uut.elementos[7][11] top.argmin_tb.uut.elementos[7][10] top.argmin_tb.uut.elementos[7][9] top.argmin_tb.uut.elementos[7][8] top.argmin_tb.uut.elementos[7][7] top.argmin_tb.uut.elementos[7][6] top.argmin_tb.uut.elementos[7][5] top.argmin_tb.uut.elementos[7][4] top.argmin_tb.uut.elementos[7][3] top.argmin_tb.uut.elementos[7][2] top.argmin_tb.uut.elementos[7][1] top.argmin_tb.uut.elementos[7][0]
+[fpshift_count] 12
+#{top.argmin_tb.uut.elementos[8][15:0]} top.argmin_tb.uut.elementos[8][15] top.argmin_tb.uut.elementos[8][14] top.argmin_tb.uut.elementos[8][13] top.argmin_tb.uut.elementos[8][12] top.argmin_tb.uut.elementos[8][11] top.argmin_tb.uut.elementos[8][10] top.argmin_tb.uut.elementos[8][9] top.argmin_tb.uut.elementos[8][8] top.argmin_tb.uut.elementos[8][7] top.argmin_tb.uut.elementos[8][6] top.argmin_tb.uut.elementos[8][5] top.argmin_tb.uut.elementos[8][4] top.argmin_tb.uut.elementos[8][3] top.argmin_tb.uut.elementos[8][2] top.argmin_tb.uut.elementos[8][1] top.argmin_tb.uut.elementos[8][0]
+[fpshift_count] 12
+#{top.argmin_tb.uut.elementos[9][15:0]} top.argmin_tb.uut.elementos[9][15] top.argmin_tb.uut.elementos[9][14] top.argmin_tb.uut.elementos[9][13] top.argmin_tb.uut.elementos[9][12] top.argmin_tb.uut.elementos[9][11] top.argmin_tb.uut.elementos[9][10] top.argmin_tb.uut.elementos[9][9] top.argmin_tb.uut.elementos[9][8] top.argmin_tb.uut.elementos[9][7] top.argmin_tb.uut.elementos[9][6] top.argmin_tb.uut.elementos[9][5] top.argmin_tb.uut.elementos[9][4] top.argmin_tb.uut.elementos[9][3] top.argmin_tb.uut.elementos[9][2] top.argmin_tb.uut.elementos[9][1] top.argmin_tb.uut.elementos[9][0]
+@25
+top.argmin_tb.uut.o_indices[0]
+top.argmin_tb.uut.o_indices[1]
+top.argmin_tb.uut.o_indices[2]
 [pattern_trace] 1
 [pattern_trace] 0

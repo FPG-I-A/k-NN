@@ -21,7 +21,7 @@ entity argmin is
         i_reset     : in bit;
         i_elementos : in vec_s_fixo(gen_n_elementos - 1 downto 0);
         o_indices   : out vec_inteiro(gen_k - 1 downto 0);
-        o_ocupado   : out bit
+        o_ocupado   : out std_logic
     );
 end argmin;
 
@@ -35,7 +35,7 @@ architecture insercao of argmin is
     signal indices         : vec_inteiro(gen_k downto 0) := (others => gen_n_elementos - 1); -- resultado
     signal c_elemento      : integer                     := 0;
     signal c_indices       : integer                     := 0;
-    signal ocupado : bit := '0';
+    signal ocupado         : std_logic := '0';
 
     -- Sinais do insersor
     signal reset_insere     : std_logic := '0';

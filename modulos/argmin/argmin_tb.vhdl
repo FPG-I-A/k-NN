@@ -19,7 +19,7 @@ architecture sim of argmin_tb is
     signal i_clk       : std_logic := '0';
     signal i_init      : bit := '0';
     signal i_reset     : bit := '0';
-    signal o_ocupado   : bit;
+    signal o_ocupado   : std_logic;
     signal i_elementos : vec_s_fixo(n_elementos - 1 downto 0);
     signal o_indices   : vec_inteiro(k - 1 downto 0);
     signal random : real;

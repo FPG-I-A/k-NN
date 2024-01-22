@@ -12,8 +12,8 @@ use work.pacote_aux.all;
 
 entity distancias is
     generic (
-        gen_n_amostras        : in integer; -- quantidade de elementos na matriz de entradas
-        gen_n_caracteristicas : in integer
+        gen_n_amostras        : in integer := 10; -- quantidade de elementos na matriz de entradas
+        gen_n_caracteristicas : in integer := 3
     );
     port (
         i_clk       : in std_logic;

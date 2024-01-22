@@ -7,17 +7,17 @@ use work.pacote_aux.all;
 
 entity knn is
     generic (
-        gen_n_amostras        : in integer; -- quantidade de amostras de treino
-        gen_n_caracteristicas : in integer; -- quantidade de características por amostra
-        gen_n_classes         : in integer;
-        gen_k                 : in integer -- valor k do algoritmo k-nn
+        gen_n_amostras        : in integer := amostras_treino; -- quantidade de amostras de treino
+        gen_n_caracteristicas : in integer := n_caracteristicas; -- quantidade de características por amostra
+        gen_n_classes         : in integer := n_classes;
+        gen_k                 : in integer := 3-- valor k do algoritmo k-nn
     );
     port (
         i_clk       : in std_logic;
         i_init      : in std_logic;
         i_reset     : in std_logic;
         i_x_treino  : in mat_s_fixo(gen_n_amostras - 1 downto 0, gen_n_caracteristicas - 1 downto 0);
-        i_y_treino  : vec_inteiro(gen_n_amostras - 1 downto 0);
+        i_y_treino  : in vec_inteiro(gen_n_amostras - 1 downto 0);
         i_infere    : in vec_s_fixo(gen_n_caracteristicas - 1 downto 0);
         o_resultado : out integer;
         o_ocupado   : out std_logic := '0'
@@ -43,7 +43,7 @@ architecture insercao of knn is
     signal argmin_reset     : bit := '0';
     signal argmin_entrada   : vec_s_fixo(gen_n_amostras - 1 downto 0);
     signal argmin_resultado : vec_inteiro(gen_k - 1 downto 0);
-    signal argmin_ocupado   : bit;
+    signal argmin_ocupado   : std_logic;
     signal argmin_comecou   : bit := '0';
     signal argmin_terminou  : bit := '0';
     signal finaliza_argmin  : bit := '0';
@@ -64,6 +64,7 @@ architecture insercao of knn is
     signal iniciar : std_logic := '0';
     signal treino  : mat_s_fixo(gen_n_amostras - 1 downto 0, gen_n_caracteristicas - 1 downto 0);
     signal infere  : vec_s_fixo(gen_n_caracteristicas - 1 downto 0);
+    signal ocupado : std_logic := '0';
 
 begin
     distancias : entity work.distancias
@@ -111,7 +112,7 @@ begin
         );
 
     termina_dist : process (dist_ocupado, i_clk) begin
-        if falling_edge(dist_ocupado) then
+        if dist_comecou = '1' and dist_ocupado = '0' then
             finaliza_dist <= '1';
         else
             finaliza_dist <= '0';
@@ -119,7 +120,7 @@ begin
     end process termina_dist;
 
     termina_argmin : process (argmin_ocupado, i_clk) begin
-        if falling_edge(argmin_ocupado) then
+        if argmin_comecou = '1' and argmin_ocupado = '0' then
             finaliza_argmin <= '1';
         else
             finaliza_argmin <= '0';
@@ -127,7 +128,7 @@ begin
     end process termina_argmin;
 
     termina_moda : process (moda_ocupado, i_clk) begin
-        if falling_edge(moda_ocupado) then
+        if moda_comecou = '1' and moda_ocupado = '0' then
             finaliza_moda <= '1';
         else
             finaliza_moda <= '0';
@@ -148,12 +149,12 @@ begin
 
     calcula : process (i_clk) begin
         if iniciar = '1' then
-            o_ocupado    <= '1';
+            ocupado    <= '1';
             dist_infere <= infere;
             dist_treino <= i_x_treino;
         end if;
 
-        if o_ocupado = '1' then
+        if ocupado = '1' then
 
             -- Módulo de distancias
             if dist_terminou = '0' and dist_ocupado = '0' and dist_terminou = '0' and dist_comecou = '0' then
@@ -191,7 +192,7 @@ begin
 
             -- Finaliza inferência
             if moda_terminou = '1' then
-                o_ocupado <= '0';
+                ocupado <= '0';
 
                 -- Reset das variáveis de estado
                 dist_comecou    <= '0';
@@ -210,8 +211,8 @@ begin
 
     end process calcula;
 
-    inicializa : process (o_ocupado, i_init, i_reset, iniciar) begin -- Controle dos estados da FSM
-        checa_estado : if (o_ocupado = '0' and i_init = '1') or (o_ocupado = '1' and i_reset = '1' and i_init = '1') then
+    inicializa : process (ocupado, i_init, i_reset, iniciar) begin -- Controle dos estados da FSM
+        checa_estado : if (ocupado = '0' and i_init = '1') or (ocupado = '1' and i_reset = '1' and i_init = '1') then
             treino  <= i_x_treino;
             infere  <= i_infere;
             iniciar <= '1';
@@ -219,4 +220,9 @@ begin
             iniciar <= '0';
         end if checa_estado;
     end process inicializa;
+
+    saida_ocupado : process(ocupado) begin
+        o_ocupado <= ocupado;
+    end process saida_ocupado;
+
 end insercao;

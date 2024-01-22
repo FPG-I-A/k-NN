@@ -37,6 +37,7 @@ def parse_args():
 
 
 def fixo_para_float(fixo):
+    print(fixo)
     inteiro, fracionario = fixo.split('.')
     exp_max = len(inteiro) - 1
     parte_inteira = sum(
