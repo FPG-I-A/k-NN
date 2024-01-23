@@ -16,8 +16,6 @@ entity knn is
         i_clk       : in std_logic;
         i_init      : in std_logic;
         i_reset     : in std_logic;
-        i_x_treino  : in mat_s_fixo(gen_n_amostras - 1 downto 0, gen_n_caracteristicas - 1 downto 0);
-        i_y_treino  : in vec_inteiro(gen_n_amostras - 1 downto 0);
         i_infere    : in vec_s_fixo(gen_n_caracteristicas - 1 downto 0);
         o_resultado : out integer;
         o_ocupado   : out std_logic := '0'
@@ -137,7 +135,7 @@ begin
 
     entrada_moda : process (i_clk) begin
         if argmin_terminou = '1' and contador_moda < gen_k then
-            moda_entrada(contador_moda) <= i_y_treino(argmin_resultado(contador_moda));
+            moda_entrada(contador_moda) <= y_treino(argmin_resultado(contador_moda));
             contador_moda               <= contador_moda + 1;
         elsif argmin_terminou = '1' then
             moda_iniciar <= '1';
@@ -151,7 +149,7 @@ begin
         if iniciar = '1' then
             ocupado    <= '1';
             dist_infere <= infere;
-            dist_treino <= i_x_treino;
+            dist_treino <= x_treino;
         end if;
 
         if ocupado = '1' then
@@ -213,7 +211,7 @@ begin
 
     inicializa : process (ocupado, i_init, i_reset, iniciar) begin -- Controle dos estados da FSM
         checa_estado : if (ocupado = '0' and i_init = '1') or (ocupado = '1' and i_reset = '1' and i_init = '1') then
-            treino  <= i_x_treino;
+            treino  <= x_treino;
             infere  <= i_infere;
             iniciar <= '1';
         else

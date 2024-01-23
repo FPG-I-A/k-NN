@@ -39,8 +39,6 @@ begin
             i_init      => i_init,
             i_reset     => i_reset,
             o_ocupado   => o_ocupado,
-            i_x_treino  => x_treino,
-            i_y_treino  => y_treino,
             i_infere    => i_infere,
             o_resultado => o_resultado
         );
