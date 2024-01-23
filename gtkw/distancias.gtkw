@@ -1,22 +1,22 @@
 [*]
 [*] GTKWave Analyzer v3.3.115 (w)1999-2023 BSI
-[*] Fri Jun  9 11:19:08 2023
+[*] Tue Jan 16 20:53:49 2024
 [*]
-[dumpfile] "/home/luis.amorim/git/k-NN/resultados/distancias/distancias_tb.ghw"
-[dumpfile_mtime] "Fri Jun  9 11:19:04 2023"
-[dumpfile_size] 156551
-[savefile] "/home/luis.amorim/git/k-NN/gtkw/distancias.gtkw"
-[timestart] 0
-[size] 1920 988
-[pos] 0 0
-*-36.299999 35100000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[dumpfile] "C:\Users\luiso\Documents\GitHub\k-NN\resultados\distancias\distancias_tb.ghw"
+[dumpfile_mtime] "Tue Jan 16 20:49:28 2024"
+[dumpfile_size] 199686
+[savefile] "C:\Users\luiso\Documents\GitHub\k-NN\gtkw\distancias.gtkw"
+[timestart] 198240000000
+[size] 1920 1027
+[pos] -9 -32
+*-33.299999 222030000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.distancias_tb.
-[treeopen] top.distancias_tb.o_resultado.
+[treeopen] top.distancias_tb.i_valor.
 [sst_width] 209
 [signals_width] 239
 [sst_expanded] 1
-[sst_vpaned_height] 291
+[sst_vpaned_height] 305
 @28
 top.distancias_tb.i_clk
 top.distancias_tb.i_init
@@ -27,8 +27,49 @@ top.distancias_tb.o_ocupado
 @420
 top.distancias_tb.uut.contador_caracteristica
 top.distancias_tb.uut.contador_elemento
+@40000420
+[fpshift_count] 12
+#{top.distancias_tb.o_resultado[0][15:0]} top.distancias_tb.o_resultado[0][15] top.distancias_tb.o_resultado[0][14] top.distancias_tb.o_resultado[0][13] top.distancias_tb.o_resultado[0][12] top.distancias_tb.o_resultado[0][11] top.distancias_tb.o_resultado[0][10] top.distancias_tb.o_resultado[0][9] top.distancias_tb.o_resultado[0][8] top.distancias_tb.o_resultado[0][7] top.distancias_tb.o_resultado[0][6] top.distancias_tb.o_resultado[0][5] top.distancias_tb.o_resultado[0][4] top.distancias_tb.o_resultado[0][3] top.distancias_tb.o_resultado[0][2] top.distancias_tb.o_resultado[0][1] top.distancias_tb.o_resultado[0][0]
+[fpshift_count] 12
+#{top.distancias_tb.o_resultado[1][15:0]} top.distancias_tb.o_resultado[1][15] top.distancias_tb.o_resultado[1][14] top.distancias_tb.o_resultado[1][13] top.distancias_tb.o_resultado[1][12] top.distancias_tb.o_resultado[1][11] top.distancias_tb.o_resultado[1][10] top.distancias_tb.o_resultado[1][9] top.distancias_tb.o_resultado[1][8] top.distancias_tb.o_resultado[1][7] top.distancias_tb.o_resultado[1][6] top.distancias_tb.o_resultado[1][5] top.distancias_tb.o_resultado[1][4] top.distancias_tb.o_resultado[1][3] top.distancias_tb.o_resultado[1][2] top.distancias_tb.o_resultado[1][1] top.distancias_tb.o_resultado[1][0]
+[fpshift_count] 12
+#{top.distancias_tb.o_resultado[2][15:0]} top.distancias_tb.o_resultado[2][15] top.distancias_tb.o_resultado[2][14] top.distancias_tb.o_resultado[2][13] top.distancias_tb.o_resultado[2][12] top.distancias_tb.o_resultado[2][11] top.distancias_tb.o_resultado[2][10] top.distancias_tb.o_resultado[2][9] top.distancias_tb.o_resultado[2][8] top.distancias_tb.o_resultado[2][7] top.distancias_tb.o_resultado[2][6] top.distancias_tb.o_resultado[2][5] top.distancias_tb.o_resultado[2][4] top.distancias_tb.o_resultado[2][3] top.distancias_tb.o_resultado[2][2] top.distancias_tb.o_resultado[2][1] top.distancias_tb.o_resultado[2][0]
+[fpshift_count] 12
+#{top.distancias_tb.o_resultado[3][15:0]} top.distancias_tb.o_resultado[3][15] top.distancias_tb.o_resultado[3][14] top.distancias_tb.o_resultado[3][13] top.distancias_tb.o_resultado[3][12] top.distancias_tb.o_resultado[3][11] top.distancias_tb.o_resultado[3][10] top.distancias_tb.o_resultado[3][9] top.distancias_tb.o_resultado[3][8] top.distancias_tb.o_resultado[3][7] top.distancias_tb.o_resultado[3][6] top.distancias_tb.o_resultado[3][5] top.distancias_tb.o_resultado[3][4] top.distancias_tb.o_resultado[3][3] top.distancias_tb.o_resultado[3][2] top.distancias_tb.o_resultado[3][1] top.distancias_tb.o_resultado[3][0]
+[fpshift_count] 12
+#{top.distancias_tb.o_resultado[4][15:0]} top.distancias_tb.o_resultado[4][15] top.distancias_tb.o_resultado[4][14] top.distancias_tb.o_resultado[4][13] top.distancias_tb.o_resultado[4][12] top.distancias_tb.o_resultado[4][11] top.distancias_tb.o_resultado[4][10] top.distancias_tb.o_resultado[4][9] top.distancias_tb.o_resultado[4][8] top.distancias_tb.o_resultado[4][7] top.distancias_tb.o_resultado[4][6] top.distancias_tb.o_resultado[4][5] top.distancias_tb.o_resultado[4][4] top.distancias_tb.o_resultado[4][3] top.distancias_tb.o_resultado[4][2] top.distancias_tb.o_resultado[4][1] top.distancias_tb.o_resultado[4][0]
+[fpshift_count] 12
+#{top.distancias_tb.o_resultado[5][15:0]} top.distancias_tb.o_resultado[5][15] top.distancias_tb.o_resultado[5][14] top.distancias_tb.o_resultado[5][13] top.distancias_tb.o_resultado[5][12] top.distancias_tb.o_resultado[5][11] top.distancias_tb.o_resultado[5][10] top.distancias_tb.o_resultado[5][9] top.distancias_tb.o_resultado[5][8] top.distancias_tb.o_resultado[5][7] top.distancias_tb.o_resultado[5][6] top.distancias_tb.o_resultado[5][5] top.distancias_tb.o_resultado[5][4] top.distancias_tb.o_resultado[5][3] top.distancias_tb.o_resultado[5][2] top.distancias_tb.o_resultado[5][1] top.distancias_tb.o_resultado[5][0]
+[fpshift_count] 12
+#{top.distancias_tb.o_resultado[6][15:0]} top.distancias_tb.o_resultado[6][15] top.distancias_tb.o_resultado[6][14] top.distancias_tb.o_resultado[6][13] top.distancias_tb.o_resultado[6][12] top.distancias_tb.o_resultado[6][11] top.distancias_tb.o_resultado[6][10] top.distancias_tb.o_resultado[6][9] top.distancias_tb.o_resultado[6][8] top.distancias_tb.o_resultado[6][7] top.distancias_tb.o_resultado[6][6] top.distancias_tb.o_resultado[6][5] top.distancias_tb.o_resultado[6][4] top.distancias_tb.o_resultado[6][3] top.distancias_tb.o_resultado[6][2] top.distancias_tb.o_resultado[6][1] top.distancias_tb.o_resultado[6][0]
+[fpshift_count] 12
+#{top.distancias_tb.o_resultado[7][15:0]} top.distancias_tb.o_resultado[7][15] top.distancias_tb.o_resultado[7][14] top.distancias_tb.o_resultado[7][13] top.distancias_tb.o_resultado[7][12] top.distancias_tb.o_resultado[7][11] top.distancias_tb.o_resultado[7][10] top.distancias_tb.o_resultado[7][9] top.distancias_tb.o_resultado[7][8] top.distancias_tb.o_resultado[7][7] top.distancias_tb.o_resultado[7][6] top.distancias_tb.o_resultado[7][5] top.distancias_tb.o_resultado[7][4] top.distancias_tb.o_resultado[7][3] top.distancias_tb.o_resultado[7][2] top.distancias_tb.o_resultado[7][1] top.distancias_tb.o_resultado[7][0]
+[fpshift_count] 12
+#{top.distancias_tb.o_resultado[8][15:0]} top.distancias_tb.o_resultado[8][15] top.distancias_tb.o_resultado[8][14] top.distancias_tb.o_resultado[8][13] top.distancias_tb.o_resultado[8][12] top.distancias_tb.o_resultado[8][11] top.distancias_tb.o_resultado[8][10] top.distancias_tb.o_resultado[8][9] top.distancias_tb.o_resultado[8][8] top.distancias_tb.o_resultado[8][7] top.distancias_tb.o_resultado[8][6] top.distancias_tb.o_resultado[8][5] top.distancias_tb.o_resultado[8][4] top.distancias_tb.o_resultado[8][3] top.distancias_tb.o_resultado[8][2] top.distancias_tb.o_resultado[8][1] top.distancias_tb.o_resultado[8][0]
+[fpshift_count] 12
+#{top.distancias_tb.o_resultado[9][15:0]} top.distancias_tb.o_resultado[9][15] top.distancias_tb.o_resultado[9][14] top.distancias_tb.o_resultado[9][13] top.distancias_tb.o_resultado[9][12] top.distancias_tb.o_resultado[9][11] top.distancias_tb.o_resultado[9][10] top.distancias_tb.o_resultado[9][9] top.distancias_tb.o_resultado[9][8] top.distancias_tb.o_resultado[9][7] top.distancias_tb.o_resultado[9][6] top.distancias_tb.o_resultado[9][5] top.distancias_tb.o_resultado[9][4] top.distancias_tb.o_resultado[9][3] top.distancias_tb.o_resultado[9][2] top.distancias_tb.o_resultado[9][1] top.distancias_tb.o_resultado[9][0]
+[fpshift_count] 12
+#{top.distancias_tb.o_resultado[99][8:-24]} top.distancias_tb.o_resultado[99][3] top.distancias_tb.o_resultado[99][2] top.distancias_tb.o_resultado[99][1] top.distancias_tb.o_resultado[99][0]
 @40000421
-[fpshift_count] 24
-#{top.distancias_tb.o_resultado[99][8:-24]} top.distancias_tb.o_resultado[99][3] top.distancias_tb.o_resultado[99][2] top.distancias_tb.o_resultado[99][1] top.distancias_tb.o_resultado[99][0] top.distancias_tb.o_resultado[99][-1] top.distancias_tb.o_resultado[99][-2] top.distancias_tb.o_resultado[99][-3] top.distancias_tb.o_resultado[99][-4] top.distancias_tb.o_resultado[99][-5] top.distancias_tb.o_resultado[99][-6] top.distancias_tb.o_resultado[99][-7] top.distancias_tb.o_resultado[99][-8] top.distancias_tb.o_resultado[99][-9] top.distancias_tb.o_resultado[99][-10] top.distancias_tb.o_resultado[99][-11] top.distancias_tb.o_resultado[99][-12]
+[fpshift_count] 12
+#{top.distancias_tb.i_elementos[99,0][15:0]} top.distancias_tb.i_elementos[99,0][15] top.distancias_tb.i_elementos[99,0][14] top.distancias_tb.i_elementos[99,0][13] top.distancias_tb.i_elementos[99,0][12] top.distancias_tb.i_elementos[99,0][11] top.distancias_tb.i_elementos[99,0][10] top.distancias_tb.i_elementos[99,0][9] top.distancias_tb.i_elementos[99,0][8] top.distancias_tb.i_elementos[99,0][7] top.distancias_tb.i_elementos[99,0][6] top.distancias_tb.i_elementos[99,0][5] top.distancias_tb.i_elementos[99,0][4] top.distancias_tb.i_elementos[99,0][3] top.distancias_tb.i_elementos[99,0][2] top.distancias_tb.i_elementos[99,0][1] top.distancias_tb.i_elementos[99,0][0]
+[fpshift_count] 12
+#{top.distancias_tb.i_elementos[99,1][15:0]} top.distancias_tb.i_elementos[99,1][15] top.distancias_tb.i_elementos[99,1][14] top.distancias_tb.i_elementos[99,1][13] top.distancias_tb.i_elementos[99,1][12] top.distancias_tb.i_elementos[99,1][11] top.distancias_tb.i_elementos[99,1][10] top.distancias_tb.i_elementos[99,1][9] top.distancias_tb.i_elementos[99,1][8] top.distancias_tb.i_elementos[99,1][7] top.distancias_tb.i_elementos[99,1][6] top.distancias_tb.i_elementos[99,1][5] top.distancias_tb.i_elementos[99,1][4] top.distancias_tb.i_elementos[99,1][3] top.distancias_tb.i_elementos[99,1][2] top.distancias_tb.i_elementos[99,1][1] top.distancias_tb.i_elementos[99,1][0]
+[fpshift_count] 12
+#{top.distancias_tb.i_elementos[99,2][15:0]} top.distancias_tb.i_elementos[99,2][15] top.distancias_tb.i_elementos[99,2][14] top.distancias_tb.i_elementos[99,2][13] top.distancias_tb.i_elementos[99,2][12] top.distancias_tb.i_elementos[99,2][11] top.distancias_tb.i_elementos[99,2][10] top.distancias_tb.i_elementos[99,2][9] top.distancias_tb.i_elementos[99,2][8] top.distancias_tb.i_elementos[99,2][7] top.distancias_tb.i_elementos[99,2][6] top.distancias_tb.i_elementos[99,2][5] top.distancias_tb.i_elementos[99,2][4] top.distancias_tb.i_elementos[99,2][3] top.distancias_tb.i_elementos[99,2][2] top.distancias_tb.i_elementos[99,2][1] top.distancias_tb.i_elementos[99,2][0]
+[fpshift_count] 12
+#{top.distancias_tb.i_elementos[99,3][15:0]} top.distancias_tb.i_elementos[99,3][15] top.distancias_tb.i_elementos[99,3][14] top.distancias_tb.i_elementos[99,3][13] top.distancias_tb.i_elementos[99,3][12] top.distancias_tb.i_elementos[99,3][11] top.distancias_tb.i_elementos[99,3][10] top.distancias_tb.i_elementos[99,3][9] top.distancias_tb.i_elementos[99,3][8] top.distancias_tb.i_elementos[99,3][7] top.distancias_tb.i_elementos[99,3][6] top.distancias_tb.i_elementos[99,3][5] top.distancias_tb.i_elementos[99,3][4] top.distancias_tb.i_elementos[99,3][3] top.distancias_tb.i_elementos[99,3][2] top.distancias_tb.i_elementos[99,3][1] top.distancias_tb.i_elementos[99,3][0]
+[fpshift_count] 12
+#{top.distancias_tb.i_elementos[99,4][15:0]} top.distancias_tb.i_elementos[99,4][15] top.distancias_tb.i_elementos[99,4][14] top.distancias_tb.i_elementos[99,4][13] top.distancias_tb.i_elementos[99,4][12] top.distancias_tb.i_elementos[99,4][11] top.distancias_tb.i_elementos[99,4][10] top.distancias_tb.i_elementos[99,4][9] top.distancias_tb.i_elementos[99,4][8] top.distancias_tb.i_elementos[99,4][7] top.distancias_tb.i_elementos[99,4][6] top.distancias_tb.i_elementos[99,4][5] top.distancias_tb.i_elementos[99,4][4] top.distancias_tb.i_elementos[99,4][3] top.distancias_tb.i_elementos[99,4][2] top.distancias_tb.i_elementos[99,4][1] top.distancias_tb.i_elementos[99,4][0]
+[fpshift_count] 12
+#{top.distancias_tb.i_valor[0][15:0]} top.distancias_tb.i_valor[0][15] top.distancias_tb.i_valor[0][14] top.distancias_tb.i_valor[0][13] top.distancias_tb.i_valor[0][12] top.distancias_tb.i_valor[0][11] top.distancias_tb.i_valor[0][10] top.distancias_tb.i_valor[0][9] top.distancias_tb.i_valor[0][8] top.distancias_tb.i_valor[0][7] top.distancias_tb.i_valor[0][6] top.distancias_tb.i_valor[0][5] top.distancias_tb.i_valor[0][4] top.distancias_tb.i_valor[0][3] top.distancias_tb.i_valor[0][2] top.distancias_tb.i_valor[0][1] top.distancias_tb.i_valor[0][0]
+[fpshift_count] 12
+#{top.distancias_tb.i_valor[1][15:0]} top.distancias_tb.i_valor[1][15] top.distancias_tb.i_valor[1][14] top.distancias_tb.i_valor[1][13] top.distancias_tb.i_valor[1][12] top.distancias_tb.i_valor[1][11] top.distancias_tb.i_valor[1][10] top.distancias_tb.i_valor[1][9] top.distancias_tb.i_valor[1][8] top.distancias_tb.i_valor[1][7] top.distancias_tb.i_valor[1][6] top.distancias_tb.i_valor[1][5] top.distancias_tb.i_valor[1][4] top.distancias_tb.i_valor[1][3] top.distancias_tb.i_valor[1][2] top.distancias_tb.i_valor[1][1] top.distancias_tb.i_valor[1][0]
+[fpshift_count] 12
+#{top.distancias_tb.i_valor[2][15:0]} top.distancias_tb.i_valor[2][15] top.distancias_tb.i_valor[2][14] top.distancias_tb.i_valor[2][13] top.distancias_tb.i_valor[2][12] top.distancias_tb.i_valor[2][11] top.distancias_tb.i_valor[2][10] top.distancias_tb.i_valor[2][9] top.distancias_tb.i_valor[2][8] top.distancias_tb.i_valor[2][7] top.distancias_tb.i_valor[2][6] top.distancias_tb.i_valor[2][5] top.distancias_tb.i_valor[2][4] top.distancias_tb.i_valor[2][3] top.distancias_tb.i_valor[2][2] top.distancias_tb.i_valor[2][1] top.distancias_tb.i_valor[2][0]
+[fpshift_count] 12
+#{top.distancias_tb.i_valor[3][15:0]} top.distancias_tb.i_valor[3][15] top.distancias_tb.i_valor[3][14] top.distancias_tb.i_valor[3][13] top.distancias_tb.i_valor[3][12] top.distancias_tb.i_valor[3][11] top.distancias_tb.i_valor[3][10] top.distancias_tb.i_valor[3][9] top.distancias_tb.i_valor[3][8] top.distancias_tb.i_valor[3][7] top.distancias_tb.i_valor[3][6] top.distancias_tb.i_valor[3][5] top.distancias_tb.i_valor[3][4] top.distancias_tb.i_valor[3][3] top.distancias_tb.i_valor[3][2] top.distancias_tb.i_valor[3][1] top.distancias_tb.i_valor[3][0]
+[fpshift_count] 12
+#{top.distancias_tb.i_valor[4][15:0]} top.distancias_tb.i_valor[4][15] top.distancias_tb.i_valor[4][14] top.distancias_tb.i_valor[4][13] top.distancias_tb.i_valor[4][12] top.distancias_tb.i_valor[4][11] top.distancias_tb.i_valor[4][10] top.distancias_tb.i_valor[4][9] top.distancias_tb.i_valor[4][8] top.distancias_tb.i_valor[4][7] top.distancias_tb.i_valor[4][6] top.distancias_tb.i_valor[4][5] top.distancias_tb.i_valor[4][4] top.distancias_tb.i_valor[4][3] top.distancias_tb.i_valor[4][2] top.distancias_tb.i_valor[4][1] top.distancias_tb.i_valor[4][0]
 [pattern_trace] 1
 [pattern_trace] 0

@@ -1,6 +1,7 @@
 library ieee;
 use ieee.fixed_pkg.all;
 use ieee.math_real.all;
+use ieee.std_logic_1164.all;
 use std.env.finish;
 
 library work;
@@ -14,11 +15,11 @@ architecture sim of moda_tb is
     constant k         : integer := 7;
 
     -- portas do componente
-    signal i_clk       : bit := '0';
-    signal i_init      : bit := '0';
-    signal i_reset     : bit := '0';
-    signal o_ocupado   : bit;
-    signal i_elementos : vec_inteiro(k - 1 downto 0);
+    signal i_clk       : std_logic := '0';
+    signal i_init      : std_logic := '0';
+    signal i_reset     : std_logic := '0';
+    signal o_ocupado   : std_logic;
+    signal i_elementos : vec_inteiro(k - 1 downto 0) := (1, 1, 1, 3, 2, 3, 2);
     signal o_resultado : integer;
 
     -- contador de ciclos de clock
@@ -48,19 +49,7 @@ begin
     end process clock;
 
     inicia : process
-        -- Variáveis do gerador de números aleatórios
-        variable seed1 : positive := 15648513;
-        variable seed2 : positive := 1;
-        variable rand  : real;
     begin
-
-        -- popula vetor de entradas
-        for i in k - 1 downto 0 loop
-            uniform(seed1, seed2, rand);
-            --i_elementos(i) <= integer(trunc(rand * real(n_classes))); -- entre 0 e n_classes - 1
-            --wait for 10 ns;
-            i_elementos(i) <= 2;
-        end loop;
 
         i_init <= '1';
         wait for 1 us;

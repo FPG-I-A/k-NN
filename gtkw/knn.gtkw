@@ -1,29 +1,30 @@
 [*]
 [*] GTKWave Analyzer v3.3.115 (w)1999-2023 BSI
-[*] Fri Jun  9 12:14:07 2023
+[*] Thu Jan 18 21:54:00 2024
 [*]
-[dumpfile] "/home/luis.amorim/git/k-NN/resultados/knn/knn_tb.ghw"
-[dumpfile_mtime] "Fri Jun  9 12:13:39 2023"
-[dumpfile_size] 918115
-[savefile] "/home/luis.amorim/git/k-NN/gtkw/knn.gtkw"
+[dumpfile] "C:\Users\luiso\Documents\GitHub\k-NN\resultados\knn\knn_tb.ghw"
+[dumpfile_mtime] "Thu Jan 18 21:53:20 2024"
+[dumpfile_size] 255451
+[savefile] "C:\Users\luiso\Documents\GitHub\k-NN\gtkw\knn.gtkw"
 [timestart] 0
-[size] 1920 988
-[pos] 0 0
-*-31.665043 349030000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1920 1027
+[pos] -1 -1
+*-37.665043 236000000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.knn_tb.
-[treeopen] top.knn_tb.uut.
 [sst_width] 209
 [signals_width] 238
 [sst_expanded] 1
-[sst_vpaned_height] 360
+[sst_vpaned_height] 377
 @28
 top.knn_tb.i_clk
 top.knn_tb.uut.i_init
 top.knn_tb.uut.o_ocupado
-@420
-top.knn_tb.contador
-@421
-top.knn_tb.o_resultado
+top.knn_tb.uut.dist_init
+top.knn_tb.uut.dist_ocupado
+@29
+top.knn_tb.uut.finaliza_dist
+@28
+top.knn_tb.uut.dist_terminou
 [pattern_trace] 1
 [pattern_trace] 0
